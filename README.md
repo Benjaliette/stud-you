@@ -1,24 +1,12 @@
-# stud-you
+# Stud•YOU
 
-## Project setup
-```
-yarn install
-```
+This website is designed to browse on movies, on cinema, on TV or upcoming,
+and add the movies you want to watch in your own list.
+Moreover, you can follow your friends to see their liked movies !
 
-### Compiles and hot-reloads for development
 ```
-yarn serve
+Website still on development
 ```
-
-### Compiles and minifies for production
 ```
-yarn build
+Made with Vue.js 3
 ```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).

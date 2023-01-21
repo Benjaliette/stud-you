@@ -1,0 +1,9 @@
+<template>
+  <nav>
+    <ul>
+      <li>Browse</li>
+      <li>Watchlist</li>
+      <li>Upcoming</li>
+    </ul>
+  </nav>
+</template>

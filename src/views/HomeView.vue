@@ -1,13 +1,8 @@
 <template>
-  <header>
-    <div class="container">
-      <img :src="logo" alt="studyou logo" />
-    </div>
-  </header>
   <section class="container">
     <div class="call-to-action">
       <h1>Cinema<br />for<br /><span>Later</span></h1>
-      <base-button>Test</base-button>
+      <base-button color="blue">Start now</base-button>
     </div>
     <div :style="landingImage" class="img-landing"></div>
   </section>
@@ -16,31 +11,38 @@
 <script setup>
 import { computed } from "vue";
 
-const logo = computed(() => {
-  const img = require("../assets/logo_grey.svg");
-  return img;
-});
-
 const landingImage = computed(() => {
   const img = require("../assets/cinema_landing.webp");
   return {
-    backgroundImage: `radial-gradient(67.72% 67.72% at 50% 50%, rgba(0, 0, 0, 0) 0%, #000000 100%), url(${img})`,
+    backgroundImage: `radial-gradient(50% 50% at 50% 50%, rgba(0, 0, 0, 0) 0%, #191919 100%), url(${img})`,
   };
 });
 </script>
 
 <style scoped>
-body {
-  background-color: #000000;
-}
-
 header {
   height: 10%;
   padding: 10px 20px;
 }
 
-header img {
+#logo {
+  display: flex;
+  align-items: center;
   height: 100%;
+}
+
+#logo img {
+  height: 100%;
+}
+
+#logo div {
+  font-size: 24px;
+  font-weight: bold;
+  font-family: "Unbounded", cursive;
+}
+
+#logo div span {
+  color: #4da9db;
 }
 
 section {
@@ -49,6 +51,11 @@ section {
   grid-template-columns: 1fr 1fr;
 }
 
+.call-to-action {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 .call-to-action h1 {
   font-size: 80px;
 }

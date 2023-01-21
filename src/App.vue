@@ -1,16 +1,34 @@
 <template>
-  <router-view />
+  <the-header></the-header>
+  <section>
+    <the-navbar v-if="!isLanding"></the-navbar>
+    <router-view />
+  </section>
 </template>
+
+<script setup>
+import TheHeader from "./components/layouts/TheHeader.vue";
+import TheNavbar from "./components/layouts/TheHeader.vue";
+import { computed } from "vue";
+import { useRoute } from "vue-router";
+
+const route = useRoute();
+
+const isLanding = computed(() => {
+  return route.name === "home";
+});
+</script>
 
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,400;0,700;1,400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Unbounded:wght@800&display=swap");
 
 #app {
   font-family: "Rubik", Helvetica, Arial sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: white;
-  height: 100vh;
+  height: 100%;
 }
 
 html {
@@ -22,5 +40,13 @@ body {
   margin: 0px;
   min-height: 100%;
   background-color: #191919;
+}
+</style>
+
+<style scoped>
+section {
+  display: flex;
+  align-items: center;
+  height: 80vh;
 }
 </style>

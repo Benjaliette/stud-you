@@ -1,8 +1,8 @@
 <template>
-  <section class="container">
+  <section>
     <div class="call-to-action">
       <h1>Cinema<br />for<br /><span>Later</span></h1>
-      <base-button color="blue">Start now</base-button>
+      <base-button color="blue" link to="/browse">Start now</base-button>
     </div>
     <div :style="landingImage" class="img-landing"></div>
   </section>
@@ -55,6 +55,8 @@ section {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  width: 70%;
+  margin: 0 auto;
 }
 .call-to-action h1 {
   font-size: 80px;

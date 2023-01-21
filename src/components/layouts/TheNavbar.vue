@@ -7,3 +7,13 @@
     </ul>
   </nav>
 </template>
+
+<style scoped>
+nav {
+  width: 30%;
+}
+
+ul {
+  list-style: none;
+}
+</style>

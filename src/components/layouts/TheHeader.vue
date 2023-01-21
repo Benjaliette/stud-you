@@ -1,10 +1,12 @@
 <template>
   <header>
     <div class="container">
-      <div id="logo">
-        <img :src="logo" alt="studyou logo" />
-        <div>Stud•<span>YOU</span></div>
-      </div>
+      <router-link to="/">
+        <div id="logo">
+          <img :src="logo" alt="studyou logo" />
+          <div>Stud•<span>YOU</span></div>
+        </div>
+      </router-link>
     </div>
   </header>
 </template>

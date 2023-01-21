@@ -1,7 +1,10 @@
 <template>
-  <button class="btn" :class="color">
+  <button class="btn" :class="color" v-if="!link">
     <slot></slot>
   </button>
+  <router-link :to="nextPage" class="btn" :class="color" v-else>
+    <slot></slot>
+  </router-link>
 </template>
 
 <script setup>
@@ -10,8 +13,23 @@ import { defineProps, computed } from "vue";
 const props = defineProps({
   color: {
     type: String,
+    required: true,
     default: "white",
   },
+  link: {
+    type: Boolean,
+    required: true,
+    default: false,
+  },
+  to: {
+    type: String,
+    required: false,
+    default: "/",
+  },
+});
+
+const nextPage = computed(() => {
+  return props.to;
 });
 
 const color = computed(() => {
@@ -21,16 +39,25 @@ const color = computed(() => {
 
 <style scoped>
 .btn {
-  width: 200px;
+  width: fit-content;
   height: 50px;
   border: none;
   border-radius: 100px;
   letter-spacing: 5px;
   text-transform: uppercase;
+  font-size: 16px;
   font-weight: bold;
-  padding: 15px 30px;
+  font-family: "Rubik", Helvetica, Arial sans-serif;
+  padding: 15px 40px;
   cursor: pointer;
   transition: transform 0.1s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+a.btn {
+  height: 20px;
 }
 
 .btn:hover {

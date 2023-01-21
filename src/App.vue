@@ -2,13 +2,13 @@
   <the-header></the-header>
   <section>
     <the-navbar v-if="!isLanding"></the-navbar>
-    <router-view />
+    <router-view :style="flexGrow" />
   </section>
 </template>
 
 <script setup>
 import TheHeader from "./components/layouts/TheHeader.vue";
-import TheNavbar from "./components/layouts/TheHeader.vue";
+import TheNavbar from "./components/layouts/TheNavbar.vue";
 import { computed } from "vue";
 import { useRoute } from "vue-router";
 
@@ -16,6 +16,10 @@ const route = useRoute();
 
 const isLanding = computed(() => {
   return route.name === "home";
+});
+
+const flexGrow = computed(() => {
+  return { flexGrow: 1 };
 });
 </script>
 
@@ -41,6 +45,16 @@ body {
   min-height: 100%;
   background-color: #191919;
 }
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+a:hover {
+  color: inherit;
+  text-decoration: inherit;
+}
 </style>
 
 <style scoped>
@@ -48,5 +62,13 @@ section {
   display: flex;
   align-items: center;
   height: 80vh;
+}
+
+section:last-child {
+  flex-grow: 1;
+}
+
+the-navbar {
+  width: 500px;
 }
 </style>

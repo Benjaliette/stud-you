@@ -60,7 +60,6 @@ a:hover {
 <style scoped>
 section {
   display: flex;
-  align-items: center;
   height: 80vh;
 }
 

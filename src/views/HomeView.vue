@@ -42,7 +42,7 @@ header {
 }
 
 #logo div span {
-  color: #4da9db;
+  color: var(--blue);
 }
 
 section {
@@ -63,7 +63,7 @@ section {
 }
 
 .call-to-action h1 > span {
-  color: #4da9db;
+  color: var(--blue);
 }
 
 .img-landing {

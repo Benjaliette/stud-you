@@ -11,10 +11,15 @@
 import { defineProps, computed } from "vue";
 
 const props = defineProps({
-  color: {
-    type: String,
+  type: {
+    type: Object,
     required: true,
-    default: "white",
+    default: () => {
+      return {
+        color: "white",
+        size: "",
+      };
+    },
   },
   link: {
     type: Boolean,
@@ -28,12 +33,14 @@ const props = defineProps({
   },
 });
 
+console.log(props.color);
+
 const nextPage = computed(() => {
   return props.to;
 });
 
 const color = computed(() => {
-  return `btn-${props.color}`;
+  return `btn-${props.type.color} btn-${props.type.size}`;
 });
 </script>
 
@@ -76,7 +83,7 @@ a.btn {
 }
 
 .btn-blue {
-  background: #4da9db;
+  background: var(--blue);
   color: white;
   border: 1px solid black;
 }
@@ -85,5 +92,15 @@ a.btn {
   background: #5c5c5c;
   color: white;
   border: 1px solid black;
+}
+
+.btn-sm {
+  font-weight: unset;
+  padding: 10px 30px;
+  font-size: 12px;
+}
+
+button.btn-sm {
+  height: 40px;
 }
 </style>

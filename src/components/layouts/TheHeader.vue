@@ -43,6 +43,6 @@ header {
 }
 
 #logo div span {
-  color: #4da9db;
+  color: var(--blue);
 }
 </style>

@@ -93,7 +93,7 @@ const setToActive = (linkName) => {
 
 <style scoped>
 nav {
-  width: 20%;
+  width: 250px;
 }
 
 section {

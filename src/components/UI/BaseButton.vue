@@ -33,8 +33,6 @@ const props = defineProps({
   },
 });
 
-console.log(props.color);
-
 const nextPage = computed(() => {
   return props.to;
 });

@@ -14,14 +14,19 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
 /* import specific icons */
-import { faFilm } from "@fortawesome/free-solid-svg-icons";
-import { faHeart } from "@fortawesome/free-solid-svg-icons";
-import { faCalendarDays } from "@fortawesome/free-solid-svg-icons";
-import { faUser } from "@fortawesome/free-solid-svg-icons";
-import { faGear } from "@fortawesome/free-solid-svg-icons";
-import { faArrowRightFromBracket } from "@fortawesome/free-solid-svg-icons";
+import {
+  faFilm,
+  faHeart,
+  faCalendarDays,
+  faUser,
+  faGear,
+  faArrowRightFromBracket,
+} from "@fortawesome/free-solid-svg-icons";
 
+/* import base UI components */
 import BaseButton from "./components/UI/BaseButton.vue";
+import BaseCard from "./components/UI/BaseCard.vue";
+import BaseCarousel from "./components/UI/BaseCarousel.vue";
 
 library.add(
   faFilm,
@@ -35,6 +40,8 @@ library.add(
 const app = createApp(App);
 
 app.component("base-button", BaseButton);
+app.component("base-card", BaseCard);
+app.component("base-carousel", BaseCarousel);
 app.component("font-awesome-icon", FontAwesomeIcon);
 
 app.use(store);

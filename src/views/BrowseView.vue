@@ -1,3 +1,7 @@
 <template>
-  <div>Browse page</div>
+  <base-carousel></base-carousel>
 </template>
+
+<script setup>
+import BaseCarousel from "../components/UI/BaseCarousel.vue";
+</script>

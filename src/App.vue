@@ -2,7 +2,9 @@
   <the-header></the-header>
   <section>
     <the-navbar v-if="!isLanding"></the-navbar>
-    <router-view :style="flexGrow" />
+    <main>
+      <router-view />
+    </main>
   </section>
 </template>
 
@@ -16,10 +18,6 @@ const route = useRoute();
 
 const isLanding = computed(() => {
   return route.name === "home";
-});
-
-const flexGrow = computed(() => {
-  return { flexGrow: 1 };
 });
 </script>
 
@@ -59,15 +57,14 @@ a:hover {
 
 <style scoped>
 section {
-  display: flex;
+  display: grid;
   height: 80vh;
+  grid-template-columns: 1fr 9fr;
 }
 
-section:last-child {
-  flex-grow: 1;
-}
-
-the-navbar {
-  width: 500px;
+main {
+  width: 90%;
+  padding: 20px;
+  margin: 0px auto;
 }
 </style>

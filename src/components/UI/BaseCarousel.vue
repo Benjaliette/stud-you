@@ -1,36 +1,34 @@
 <template>
-  <div class="carousel">
-    <swiper
-      :spaceBetween="30"
-      :centeredSlides="true"
-      :autoplay="{
-        delay: 5000,
-        disableOnInteraction: false,
-      }"
-      :pagination="{
-        clickable: true,
-      }"
-      :navigation="false"
-      :modules="modules"
-      class="mySwiper"
-    >
-      <swiper-slide v-for="movie in 5" :key="movie">
-        <header>
-          <h2>Movie name</h2>
-          <div class="header__subtitle">
-            <h3>Year</h3>
-            <h3>RATE</h3>
-          </div>
-          <div class="header__actions">
-            <base-button link to="browse" :type="{ color: 'blue', size: 'sm' }">
-              Details
-            </base-button>
-          </div>
-        </header>
-        <div class="swiper-slide__img" :style="swiperImage"></div>
-      </swiper-slide>
-    </swiper>
-  </div>
+  <swiper
+    :spaceBetween="30"
+    :centeredSlides="true"
+    :autoplay="{
+      delay: 5000,
+      disableOnInteraction: false,
+    }"
+    :pagination="{
+      clickable: true,
+    }"
+    :navigation="false"
+    :modules="modules"
+    class="mySwiper"
+  >
+    <swiper-slide v-for="movie in 5" :key="movie">
+      <header>
+        <h2>Movie name</h2>
+        <div class="header__subtitle">
+          <h3>Year</h3>
+          <h3>RATE</h3>
+        </div>
+        <div class="header__actions">
+          <base-button link to="browse" :type="{ color: 'blue', size: 'sm' }">
+            Details
+          </base-button>
+        </div>
+      </header>
+      <div class="swiper-slide__img" :style="swiperImage"></div>
+    </swiper-slide>
+  </swiper>
 </template>
 <script setup>
 // Import Swiper Vue.js components
@@ -58,12 +56,9 @@ const swiperImage = computed(() => {
 </script>
 
 <style scoped>
-.carousel {
-  width: 80%;
-}
 .swiper {
   height: 20rem;
-  width: 80%;
+  width: 65rem;
   margin: 10px auto;
   --swiper-pagination-bullet-inactive-color: var(--grey);
   --swiper-pagination-color: var(--blue);

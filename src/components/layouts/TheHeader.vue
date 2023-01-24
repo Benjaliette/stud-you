@@ -1,12 +1,18 @@
 <template>
   <header>
     <div class="container">
-      <router-link to="/">
-        <div id="logo">
-          <img :src="logo" alt="studyou logo" />
-          <div>Stud•<span>YOU</span></div>
-        </div>
-      </router-link>
+      <div class="header__actions">
+        <router-link to="/">
+          <div id="logo">
+            <img :src="logo" alt="studyou logo" />
+            <div>Stud•<span>YOU</span></div>
+          </div>
+        </router-link>
+        <base-search-bar
+          defaultText="Search for a movie/user"
+        ></base-search-bar>
+        <div class="header__account"></div>
+      </div>
     </div>
   </header>
 </template>
@@ -22,18 +28,17 @@ const logo = computed(() => {
 
 <style scoped>
 header {
-  height: 50px;
+  height: var(--header-height);
   padding: 10px 20px;
 }
 
 #logo {
   display: flex;
   align-items: center;
-  height: 100%;
 }
 
 #logo img {
-  height: 100%;
+  height: var(--header-height);
 }
 
 #logo div {
@@ -44,5 +49,11 @@ header {
 
 #logo div span {
   color: var(--blue);
+}
+
+.header__actions {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  height: var(--header-height);
 }
 </style>

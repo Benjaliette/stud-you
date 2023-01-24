@@ -41,7 +41,7 @@ html {
 body {
   margin: 0px;
   min-height: 100%;
-  background-color: #191919;
+  background-color: var(--black);
 }
 
 a {

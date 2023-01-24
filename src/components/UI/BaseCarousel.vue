@@ -59,7 +59,7 @@ const swiperImage = computed(() => {
 .swiper {
   height: 20rem;
   width: 90%;
-  margin: 10px auto;
+  margin: 40px auto;
   --swiper-pagination-bullet-inactive-color: var(--grey);
   --swiper-pagination-color: var(--blue);
   --swiper-pagination-bullet-inactive-opacity: 1;

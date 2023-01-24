@@ -57,14 +57,15 @@ a:hover {
 
 <style scoped>
 section {
-  display: grid;
+  display: flex;
   height: 80vh;
-  grid-template-columns: 1fr 9fr;
 }
 
 main {
-  width: 90%;
+  width: 75vw;
   padding: 20px;
   margin: 0px auto;
+  position: absolute;
+  left: 250px;
 }
 </style>

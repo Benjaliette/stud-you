@@ -58,7 +58,7 @@ const swiperImage = computed(() => {
 <style scoped>
 .swiper {
   height: 20rem;
-  width: 65rem;
+  width: 90%;
   margin: 10px auto;
   --swiper-pagination-bullet-inactive-color: var(--grey);
   --swiper-pagination-color: var(--blue);
@@ -103,6 +103,7 @@ header {
 .swiper-slide__img {
   background-position: center;
   background-size: cover;
+  background-repeat: no-repeat;
   width: 60%;
   height: 100%;
   object-fit: cover;

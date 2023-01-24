@@ -16,7 +16,7 @@ import { computed } from "vue";
 const landingImage = computed(() => {
   const img = require("../assets/cinema_landing.webp");
   return {
-    backgroundImage: `radial-gradient(50% 50% at 50% 50%, rgba(0, 0, 0, 0) 0%, #191919 100%), url(${img})`,
+    backgroundImage: `radial-gradient(40% 50% at 55% 50%, rgba(0, 0, 0, 0) 0%, #191919 100%), url(${img})`,
   };
 });
 </script>
@@ -50,14 +50,14 @@ header {
 section {
   height: 90%;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 2fr;
 }
 
 .call-to-action {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 70%;
+  width: 100%;
   margin: 0 auto;
 }
 .call-to-action h1 {

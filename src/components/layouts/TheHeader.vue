@@ -10,6 +10,7 @@
         </router-link>
         <base-search-bar
           defaultText="Search for a movie/user"
+          v-if="!isLanding"
         ></base-search-bar>
         <div class="header__account"></div>
       </div>
@@ -19,6 +20,13 @@
 
 <script setup>
 import { computed } from "vue";
+import { useRoute } from "vue-router";
+
+const route = useRoute();
+
+const isLanding = computed(() => {
+  return route.name === "home";
+});
 
 const logo = computed(() => {
   const img = require("../../assets/logo_grey.svg");

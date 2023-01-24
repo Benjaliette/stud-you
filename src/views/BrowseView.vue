@@ -2,8 +2,8 @@
   <base-carousel></base-carousel>
   <section>
     <h2>Now playing</h2>
-    <div>
-      <base-card v-for="movie in 2" :key="movie"></base-card>
+    <div class="cards">
+      <card-swiper></card-swiper>
     </div>
   </section>
   <section>
@@ -17,3 +17,9 @@
 <script setup>
 import BaseCarousel from "../components/UI/BaseCarousel.vue";
 </script>
+
+<style scoped>
+.cards {
+  display: flex;
+}
+</style>

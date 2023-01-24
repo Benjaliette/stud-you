@@ -3,7 +3,7 @@
   <section>
     <h2>Now playing</h2>
     <div class="cards">
-      <card-swiper></card-swiper>
+      <movies-list></movies-list>
     </div>
   </section>
   <section>
@@ -15,7 +15,7 @@
 </template>
 
 <script setup>
-import BaseCarousel from "../components/UI/BaseCarousel.vue";
+import MoviesList from "@/components/movies/MoviesList.vue";
 </script>
 
 <style scoped>

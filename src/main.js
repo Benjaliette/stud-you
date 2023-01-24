@@ -27,7 +27,6 @@ import {
 import BaseButton from "./components/UI/BaseButton.vue";
 import BaseCard from "./components/UI/BaseCard.vue";
 import BaseCarousel from "./components/UI/BaseCarousel.vue";
-import CardSwiper from "./components/layouts/CardSwiper.vue";
 
 library.add(
   faFilm,
@@ -43,7 +42,6 @@ const app = createApp(App);
 app.component("base-button", BaseButton);
 app.component("base-card", BaseCard);
 app.component("base-carousel", BaseCarousel);
-app.component("card-swiper", CardSwiper);
 app.component("font-awesome-icon", FontAwesomeIcon);
 
 app.use(store);

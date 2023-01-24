@@ -17,6 +17,7 @@
     <div class="disable-prev-button" id="prev-button"></div>
   </swiper>
 </template>
+
 <script setup>
 // Import Swiper Vue.js components
 import { Swiper, SwiperSlide } from "swiper/vue";

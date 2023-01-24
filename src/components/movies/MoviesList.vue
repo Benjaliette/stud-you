@@ -3,18 +3,17 @@
     :slidesPerView="3.5"
     :slidesPerGroupSkip="0"
     :slidesPerGroup="3"
-    :loop="true"
-    :loopedSlides="cardNumber"
+    :loop="false"
     :spaceBetween="30"
     :navigation="true"
     :modules="modules"
+    :initialSlide="0"
     class="mySwiper"
-    @slideChange="onSlideChange"
   >
-    <swiper-slide v-for="(card, index) in 9" :key="index">
-      <base-card>{{ index }}</base-card>
+    <swiper-slide v-for="(movie, index) in movies" :key="index">
+      <base-card :movie="movie"></base-card>
+      <base-flag :marked="movie.saved" @click="markAsSaved(movie)"></base-flag>
     </swiper-slide>
-    <div class="disable-prev-button" id="prev-button"></div>
   </swiper>
 </template>
 
@@ -28,22 +27,16 @@ import "swiper/css";
 // import required modules
 import { Navigation } from "swiper";
 
-import { ref } from "vue";
+import { ref, defineProps } from "vue";
+import { useStore } from "vuex";
 
 const modules = ref([Navigation]);
-const cardNumber = ref(9);
 
-const onSlideChange = (swiper) => {
-  const test = document.querySelector("#prev-button");
-  if (swiper.activeIndex % cardNumber.value === 0) {
-    swiper.allowSlidePrev = false;
-    test.classList.add("swiper-button-prev");
-    swiper.updateSlidesClasses();
-  } else {
-    test.classList.remove("swiper-button-prev");
-    swiper.allowSlidePrev = true;
-    swiper.updateSlidesClasses();
-  }
+defineProps(["movies"]);
+const store = useStore();
+
+const markAsSaved = (markedMovie) => {
+  store.dispatch("movies/markMovieAsSaved", markedMovie);
 };
 </script>
 
@@ -52,10 +45,5 @@ const onSlideChange = (swiper) => {
   width: 100%;
   height: 100%;
   --swiper-navigation-color: var(--blue);
-}
-
-.disable-prev-button {
-  color: #2d2d2d;
-  cursor: not-allowed;
 }
 </style>

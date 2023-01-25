@@ -12,7 +12,7 @@
           defaultText="Search for a movie/user"
           v-if="!isLanding"
         ></base-search-bar>
-        <div class="header__account">
+        <div class="header__account" v-if="!isLanding">
           <div v-if="isAuth" class="account-avatar">
             <base-avatar
               :online="isAuth"

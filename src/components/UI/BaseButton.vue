@@ -78,6 +78,8 @@ a.btn {
 .btn-white {
   background: white;
   border: 1px solid black;
+  color: var(--black);
+  font-weight: bold !important;
 }
 
 .btn-blue {
@@ -99,6 +101,16 @@ a.btn {
 }
 
 button.btn-sm {
+  height: 40px;
+}
+
+.btn-xs {
+  font-weight: unset;
+  padding: 5px 20px;
+  font-size: 10px;
+}
+
+button.btn-xs {
   height: 40px;
 }
 </style>

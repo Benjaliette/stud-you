@@ -41,7 +41,6 @@
           to="browse"
           :active="isActive('browse')"
           @click="setToActive('browse')"
-          class="test"
         >
           Profile
         </nav-link>
@@ -67,7 +66,7 @@
       <h2>Following</h2>
       <div class="section__item">
         <p>You're not authentified <span class="blue">yet ...</span></p>
-        <base-button link to="#" :type="{ color: 'blue', size: 'sm' }">
+        <base-button link to="#" :type="{ color: 'blue', size: 'xs' }">
           Log in
         </base-button>
       </div>
@@ -77,10 +76,11 @@
 
 <script setup>
 import NavLink from "./NavLink.vue";
-import { ref } from "vue";
+import { ref, computed } from "vue";
+import { useStore } from "vuex";
 
 const activeLink = ref("browse");
-const isAuth = ref(false);
+const store = useStore();
 
 const isActive = (linkName) => {
   return linkName === activeLink.value;
@@ -89,6 +89,10 @@ const isActive = (linkName) => {
 const setToActive = (linkName) => {
   activeLink.value = linkName;
 };
+
+const isAuth = computed(() => {
+  return store.getters["users/isAuth"];
+});
 </script>
 
 <style scoped>

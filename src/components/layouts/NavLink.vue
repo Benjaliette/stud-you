@@ -1,6 +1,6 @@
 <template>
-  <router-link :to="nextLink" class="test">
-    <li :class="{ active: active }">
+  <router-link :to="nextLink">
+    <li :class="{ active: active, dropdown: dropdown }">
       <font-awesome-icon :icon="iconType" size="lg" />
       <slot></slot>
     </li>
@@ -21,6 +21,10 @@ const props = defineProps({
   },
   active: {
     type: Boolean,
+  },
+  dropdown: {
+    type: Boolean,
+    default: false,
   },
 });
 
@@ -49,7 +53,18 @@ li.active {
   border-left: solid 7px var(--blue);
 }
 
+li.dropdown {
+  color: var(--black);
+  font-weight: unset;
+  margin-top: 0px;
+  margin-bottom: 1.2rem;
+  border-left: none;
+  padding: 0px;
+  font-size: 14px;
+}
+
 svg {
   margin-right: 20px;
+  width: 15%;
 }
 </style>

@@ -1,6 +1,7 @@
 import { createStore } from "vuex";
 
 import MoviesModule from "./movies/index.js";
+import UsersModule from "./users/index.js";
 
 export default createStore({
   state: {},
@@ -9,5 +10,6 @@ export default createStore({
   actions: {},
   modules: {
     movies: MoviesModule,
+    users: UsersModule,
   },
 });

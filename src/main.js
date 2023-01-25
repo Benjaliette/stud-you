@@ -32,6 +32,7 @@ import BaseCard from "./components/UI/BaseCard.vue";
 import BaseCarousel from "./components/UI/BaseCarousel.vue";
 import BaseFlag from "./components/UI/BaseFlag.vue";
 import BaseSearchBar from "./components/UI/BaseSearchBar.vue";
+import BaseAvatar from "./components/UI/BaseAvatar.vue";
 
 library.add(
   faFilm,
@@ -51,6 +52,7 @@ app.component("base-card", BaseCard);
 app.component("base-carousel", BaseCarousel);
 app.component("base-flag", BaseFlag);
 app.component("base-search-bar", BaseSearchBar);
+app.component("base-avatar", BaseAvatar);
 app.component("font-awesome-icon", FontAwesomeIcon);
 
 app.use(store);

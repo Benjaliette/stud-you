@@ -24,15 +24,18 @@ import {
   faArrowRightFromBracket,
   faMagnifyingGlass,
   faXmark,
+  faCheck,
 } from "@fortawesome/free-solid-svg-icons";
 
 /* import base UI components */
 import BaseButton from "./components/UI/BaseButton.vue";
-import BaseCard from "./components/UI/BaseCard.vue";
+import BaseMovieCard from "./components/UI/BaseMovieCard.vue";
 import BaseCarousel from "./components/UI/BaseCarousel.vue";
 import BaseFlag from "./components/UI/BaseFlag.vue";
 import BaseSearchBar from "./components/UI/BaseSearchBar.vue";
 import BaseAvatar from "./components/UI/BaseAvatar.vue";
+import BaseBadge from "./components/UI/BaseBadge.vue";
+import BaseDialog from "./components/UI/BaseDialog.vue";
 
 library.add(
   faFilm,
@@ -42,17 +45,20 @@ library.add(
   faGear,
   faArrowRightFromBracket,
   faMagnifyingGlass,
-  faXmark
+  faXmark,
+  faCheck
 );
 
 const app = createApp(App);
 
 app.component("base-button", BaseButton);
-app.component("base-card", BaseCard);
+app.component("base-movie-card", BaseMovieCard);
 app.component("base-carousel", BaseCarousel);
 app.component("base-flag", BaseFlag);
 app.component("base-search-bar", BaseSearchBar);
 app.component("base-avatar", BaseAvatar);
+app.component("base-badge", BaseBadge);
+app.component("base-dialog", BaseDialog);
 app.component("font-awesome-icon", FontAwesomeIcon);
 
 app.use(store);

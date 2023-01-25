@@ -1,6 +1,6 @@
 <template>
   <the-header></the-header>
-  <section>
+  <section class="body__section">
     <the-navbar v-if="!isLanding"></the-navbar>
     <main>
       <router-view />
@@ -25,14 +25,6 @@ const isLanding = computed(() => {
 @import url("https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,400;0,700;1,400&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Unbounded:wght@800&display=swap");
 
-#app {
-  font-family: "Rubik", Helvetica, Arial sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: white;
-  height: 100%;
-}
-
 html {
   margin: 0px;
   min-height: 100%;
@@ -42,6 +34,10 @@ body {
   margin: 0px;
   min-height: 100%;
   background-color: var(--black);
+  font-family: "Rubik", Helvetica, Arial sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: white;
 }
 
 a {
@@ -56,7 +52,7 @@ a:hover {
 </style>
 
 <style scoped>
-section {
+section.body__section {
   display: flex;
   height: 80vh;
 }

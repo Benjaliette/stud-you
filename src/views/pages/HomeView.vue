@@ -14,7 +14,7 @@
 import { computed } from "vue";
 
 const landingImage = computed(() => {
-  const img = require("../assets/cinema_landing.webp");
+  const img = require("../../assets/cinema_landing.webp");
   return {
     backgroundImage: `radial-gradient(40% 50% at 55% 50%, rgba(0, 0, 0, 0) 0%, #191919 100%), url(${img})`,
   };

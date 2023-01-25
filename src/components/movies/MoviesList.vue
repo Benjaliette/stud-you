@@ -11,8 +11,15 @@
     class="mySwiper"
   >
     <swiper-slide v-for="(movie, index) in movies" :key="index">
-      <base-card :movie="movie"></base-card>
-      <base-flag :marked="movie.saved" @click="markAsSaved(movie)"></base-flag>
+      <base-movie-card
+        :movie="movie"
+        :watchlist="isWatchlist"
+      ></base-movie-card>
+      <base-flag
+        :marked="movie.saved"
+        @click="markAsSaved(movie)"
+        v-if="!isWatchlist"
+      ></base-flag>
     </swiper-slide>
   </swiper>
 </template>
@@ -27,10 +34,12 @@ import "swiper/css";
 // import required modules
 import { Navigation } from "swiper";
 
-import { ref, defineProps } from "vue";
+import { ref, computed, defineProps } from "vue";
 import { useStore } from "vuex";
+import { useRoute } from "vue-router";
 
 const modules = ref([Navigation]);
+const route = useRoute();
 
 defineProps(["movies"]);
 const store = useStore();
@@ -38,6 +47,10 @@ const store = useStore();
 const markAsSaved = (markedMovie) => {
   store.dispatch("movies/markMovieAsSaved", markedMovie);
 };
+
+const isWatchlist = computed(() => {
+  return route.name === "watchlist";
+});
 </script>
 
 <style scoped>

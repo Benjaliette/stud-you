@@ -14,7 +14,7 @@
         </nav-link>
         <nav-link
           icon="heart"
-          to="browse"
+          to="watchlist"
           :active="isActive('watchlist')"
           @click="setToActive('watchlist')"
         >
@@ -36,28 +36,9 @@
     <section v-if="isAuth">
       <h2>My place</h2>
       <ul>
-        <nav-link
-          icon="user"
-          to="browse"
-          :active="isActive('browse')"
-          @click="setToActive('browse')"
-        >
-          Profile
-        </nav-link>
-        <nav-link
-          icon="gear"
-          to="browse"
-          :active="isActive('watchlist')"
-          @click="setToActive('watchlist')"
-        >
-          Setting
-        </nav-link>
-        <nav-link
-          icon="arrow-right-from-bracket"
-          to="browse"
-          :active="isActive('upcoming')"
-          @click="setToActive('upcoming')"
-        >
+        <nav-link icon="user" to="browse" :active="true">Profile</nav-link>
+        <nav-link icon="gear" to="browse" :active="false">Setting</nav-link>
+        <nav-link icon="arrow-right-from-bracket" to="browse" :active="false">
           Log out
         </nav-link>
       </ul>
@@ -78,12 +59,14 @@
 import NavLink from "./NavLink.vue";
 import { ref, computed } from "vue";
 import { useStore } from "vuex";
+import { useRoute } from "vue-router";
 
-const activeLink = ref("browse");
 const store = useStore();
+const route = useRoute();
+const activeLink = ref("");
 
 const isActive = (linkName) => {
-  return linkName === activeLink.value;
+  return linkName === route.name;
 };
 
 const setToActive = (linkName) => {

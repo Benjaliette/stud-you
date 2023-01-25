@@ -6,19 +6,32 @@
           <h4>{{ movie.title }}</h4>
           <p>{{ movie.year }}</p>
         </header>
-        <div>
+        <div v-if="props.watchlist">
+          <base-badge type="read" @read="markAsRead"></base-badge>
+        </div>
+        <div v-else>
           {{ movie.rating }}
         </div>
       </article>
     </div>
+    <movie-rating :show="showDialog" @close="closeDialog"></movie-rating>
   </div>
 </template>
 
 <script setup>
-import { defineProps, computed } from "vue";
+import MovieRating from "../movies/MovieRating.vue";
+import { defineProps, computed, ref } from "vue";
+import { useStore } from "vuex";
 
+const showDialog = ref(false);
+
+const store = useStore();
 const props = defineProps({
   movie: Object,
+  watchlist: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 const moviePoster = computed(() => {
@@ -26,6 +39,15 @@ const moviePoster = computed(() => {
     backgroundImage: `linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 80%), url(${props.movie.poster})`,
   };
 });
+
+const markAsRead = () => {
+  showDialog.value = true;
+  store.dispatch("movies/rateMovie", props.movie);
+};
+
+const closeDialog = () => {
+  showDialog.value = false;
+};
 </script>
 
 <style scoped>

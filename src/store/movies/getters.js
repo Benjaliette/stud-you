@@ -8,4 +8,7 @@ export default {
   topMovies(state) {
     return state.movies;
   },
+  watchlistMovies(state) {
+    return state.movies.filter((movie) => movie.saved);
+  },
 };

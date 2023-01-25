@@ -85,7 +85,6 @@ a.btn {
 .btn-blue {
   background: var(--blue);
   color: white;
-  border: 1px solid black;
 }
 
 .btn-grey {

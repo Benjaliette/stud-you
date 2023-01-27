@@ -64,4 +64,15 @@ main {
   position: absolute;
   left: 250px;
 }
+
+@media (max-width: 960px) {
+  main {
+    width: 69vw;
+  }
+}
+@media (max-width: 720px) {
+  main {
+    width: 59vw;
+  }
+}
 </style>

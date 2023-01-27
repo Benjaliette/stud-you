@@ -4,7 +4,7 @@
       :src="imageUrl"
       alt="user avatar"
       class="avatar-img"
-      :class="avatarUser"
+      :class="avatarType"
     />
   </div>
 </template>
@@ -21,29 +21,34 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
-  forUser: {
-    type: Boolean,
-    default: false,
+  for: {
+    type: String,
+    default: "user",
   },
 });
 
 const onlineStyle = computed(() => {
-  return { "avatar-bordered": props.online };
+  if (props.for === "user") {
+    return { "avatar-bordered": props.online };
+  } else {
+    return { "avatar-bordered-lg": props.online };
+  }
 });
 
 const cursorPointer = computed(() => {
   return { cursor: "pointer" };
 });
 
-const avatarUser = computed(() => {
-  return { "user-avatar": props.forUser };
+const avatarType = computed(() => {
+  return {
+    "user-avatar": props.for === "user",
+    "profile-avatar": props.for === "profile",
+  };
 });
 </script>
 
 <style scoped>
 .avatar-img {
-  width: 40px;
-  height: 40px;
   object-fit: fill;
   border-radius: 50%;
 }
@@ -62,5 +67,31 @@ const avatarUser = computed(() => {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.avatar-bordered-lg {
+  width: 105px;
+  height: 105px;
+  border-radius: 50%;
+  position: relative;
+  background: linear-gradient(
+    180deg,
+    rgb(255, 0, 81) 0%,
+    rgba(255, 194, 0, 1) 100%
+  );
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-avatar {
+  width: 40px;
+  height: 40px;
+}
+
+.profile-avatar {
+  width: 100px;
+  height: 100px;
 }
 </style>

@@ -36,7 +36,9 @@
     <section v-if="isAuth">
       <h2>My place</h2>
       <ul>
-        <nav-link icon="user" to="browse" :active="true">Profile</nav-link>
+        <nav-link icon="user" :to="userLink" :active="isActive('user')">
+          Profile
+        </nav-link>
         <nav-link icon="gear" to="browse" :active="false">Setting</nav-link>
         <nav-link icon="arrow-right-from-bracket" to="browse" :active="false">
           Log out
@@ -75,6 +77,11 @@ const setToActive = (linkName) => {
 
 const isAuth = computed(() => {
   return store.getters["users/isAuth"];
+});
+
+const userLink = computed(() => {
+  const user = store.getters["users/userLoggedIn"];
+  return `users/${user.id}`;
 });
 </script>
 

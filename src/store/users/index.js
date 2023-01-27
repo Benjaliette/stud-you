@@ -4,10 +4,14 @@ import UsersActions from "./actions.js";
 
 // const user = JSON.parse(localStorage.getItem("user"));
 const user = {
+  id: 1,
   firstName: "Fname",
   lastName: "Lname",
+  username: "user123",
   email: "user@mail.fr",
   password: "123456",
+  description: "I love cinema like I like my coffee, black and white",
+  profilePicture: require("@/assets/default_avatar.png"),
   watchlistMovies: [
     {
       id: 1,

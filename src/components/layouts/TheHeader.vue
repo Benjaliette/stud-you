@@ -16,7 +16,7 @@
           <div v-if="isAuth" class="account-avatar">
             <base-avatar
               :online="isAuth"
-              forUser
+              for="user"
               @click="toggleDropdown"
             ></base-avatar>
             <user-dropdown

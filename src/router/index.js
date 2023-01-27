@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/pages/HomeView.vue";
+import store from "../store/index.js";
 
 const routes = [
   {
@@ -10,41 +11,45 @@ const routes = [
   {
     path: "/browse",
     name: "browse",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/pages/BrowseView.vue"),
   },
   {
     path: "/watchlist",
     name: "watchlist",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () => import("../views/pages/WatchlistView.vue"),
   },
   {
     path: "/upcoming",
     name: "upcoming",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () => import("../views/pages/UpcomingView.vue"),
   },
   {
     path: "/login",
     name: "login",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () => import("../views/auth/LoginView.vue"),
+  },
+  {
+    path: "/users/:id",
+    name: "user",
+    component: () => import("../views/users/UserProfileView.vue"),
+    meta: {
+      requiresAuth: true,
+    },
   },
 ];
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
+});
+
+router.beforeEach((to, from, next) => {
+  if (to.meta.requiresAuth && !store.getters["users/isAuth"]) {
+    next("/login");
+  } else {
+    next();
+  }
 });
 
 export default router;

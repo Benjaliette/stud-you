@@ -36,7 +36,10 @@ const onlineStyle = computed(() => {
 });
 
 const cursorPointer = computed(() => {
-  return { cursor: "pointer" };
+  if (props.for === "user") {
+    return { cursor: "pointer" };
+  }
+  return { cursor: "inherit" };
 });
 
 const avatarType = computed(() => {

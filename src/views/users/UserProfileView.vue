@@ -1,4 +1,5 @@
 <template>
+  <router-view></router-view>
   <h1>User profile</h1>
   <section class="user__section">
     <div class="user__info">
@@ -35,7 +36,11 @@
       <div>{{ user.description }}</div>
     </div>
     <div class="user__action">
-      <base-button :type="{ color: 'blue', sm: '' }" :link="false">
+      <base-button
+        :type="{ color: 'blue', sm: '' }"
+        :link="true"
+        :to="editLink"
+      >
         Edit profile
       </base-button>
     </div>
@@ -44,12 +49,18 @@
 
 <script setup>
 import { useStore } from "vuex";
+import { useRoute } from "vue-router";
 import { computed } from "vue";
 
 const store = useStore();
+const route = useRoute();
 
 const user = computed(() => {
   return store.getters["users/userLoggedIn"];
+});
+
+const editLink = computed(() => {
+  return `${route.path}/edit`;
 });
 </script>
 

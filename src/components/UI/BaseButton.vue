@@ -29,7 +29,7 @@ const props = defineProps({
   to: {
     type: String,
     required: false,
-    default: "/",
+    default: "",
   },
 });
 

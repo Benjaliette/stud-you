@@ -22,11 +22,11 @@
         </nav-link>
         <nav-link
           icon="calendar-days"
-          to="browse"
+          to="upcoming"
           :active="isActive('upcoming')"
           @click="setToActive('upcoming')"
         >
-          Upcoming
+          Coming soon
         </nav-link>
       </ul>
     </section>

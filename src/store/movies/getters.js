@@ -11,4 +11,7 @@ export default {
   watchlistMovies(state) {
     return state.movies.filter((movie) => movie.saved);
   },
+  upcomingMovies(state) {
+    return state.movies;
+  },
 };

@@ -2,7 +2,7 @@
   <the-header></the-header>
   <section class="body__section">
     <the-navbar v-if="!isLanding"></the-navbar>
-    <main>
+    <main :class="onLanding">
       <router-view />
     </main>
   </section>
@@ -18,6 +18,10 @@ const route = useRoute();
 
 const isLanding = computed(() => {
   return route.name === "home";
+});
+
+const onLanding = computed(() => {
+  return { welcome: isLanding.value };
 });
 </script>
 
@@ -40,6 +44,10 @@ body {
   color: white;
 }
 
+body.modal-open {
+  overflow: hidden;
+}
+
 a {
   color: inherit;
   text-decoration: inherit;
@@ -54,7 +62,7 @@ a:hover {
 <style scoped>
 section.body__section {
   display: flex;
-  height: 80vh;
+  height: 90vh;
 }
 
 main {
@@ -63,6 +71,12 @@ main {
   margin: 0px auto;
   position: absolute;
   left: 250px;
+}
+
+main.welcome {
+  position: relative;
+  width: 85vw;
+  left: 0px;
 }
 
 @media (max-width: 960px) {

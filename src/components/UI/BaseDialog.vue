@@ -1,7 +1,10 @@
 <template>
   <teleport to="body">
-    <div v-if="show" @click="tryClose" class="backdrop"></div>
-    <dialog open v-if="show">
+    <div v-if="props.show" @click="tryClose" class="backdrop"></div>
+    <dialog open v-if="show" :class="dialogType">
+      <header>
+        <slot name="header"></slot>
+      </header>
       <section>
         <slot></slot>
       </section>
@@ -10,13 +13,21 @@
 </template>
 
 <script setup>
-import { defineProps } from "vue";
+import { defineProps, computed } from "vue";
 
-defineProps({
+const props = defineProps({
   show: {
     type: Boolean,
     required: true,
   },
+  type: {
+    type: String,
+    default: "rating",
+  },
+});
+
+const dialogType = computed(() => {
+  return `dialog-${props.type}`;
 });
 </script>
 
@@ -34,8 +45,8 @@ defineProps({
 dialog {
   position: absolute;
   top: 20vh;
-  left: 10%;
-  width: 80%;
+  left: calc(50% - 20rem);
+  width: 40rem;
   height: 60vh;
   z-index: 100;
   border: none;
@@ -43,7 +54,26 @@ dialog {
   padding: 0;
   margin: 0;
   overflow: hidden;
+}
+
+.dialog-rating {
   background-color: #505050;
+}
+
+.dialog-movie {
+  height: 85vh;
+  top: 10vh;
+  left: 3%;
+  width: 94%;
+  border-radius: 20px;
+  background-color: #505050;
+  color: white;
+  overflow-y: auto;
+}
+
+.dialog-movie header {
+  height: 45%;
+  width: 100%;
 }
 
 section {
@@ -54,10 +84,8 @@ section {
   justify-content: space-between;
 }
 
-@media (min-width: 768px) {
-  dialog {
-    left: calc(50% - 20rem);
-    width: 40rem;
-  }
+.dialog-movie section {
+  justify-content: flex-start;
+  padding: 3rem 2rem;
 }
 </style>

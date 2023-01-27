@@ -13,6 +13,38 @@ export default {
           year: 2000,
           rating: 10,
           poster: require("@/assets/affiche_type.webp"),
+          actors: [
+            {
+              id: 1,
+              name: "Actor's name",
+              char: "Actor's char",
+              picture: require("@/assets/default_actor.webp"),
+            },
+            {
+              id: 2,
+              name: "Actor's name",
+              char: "Actor's char",
+              picture: require("@/assets/default_actor.webp"),
+            },
+            {
+              id: 3,
+              name: "Actor's name",
+              char: "Actor's char",
+              picture: require("@/assets/default_actor.webp"),
+            },
+            {
+              id: 4,
+              name: "Actor's name",
+              char: "Actor's char",
+              picture: require("@/assets/default_actor.webp"),
+            },
+            {
+              id: 5,
+              name: "Actor's name",
+              char: "Actor's char",
+              picture: require("@/assets/default_actor.webp"),
+            },
+          ],
           saved: false,
         },
         {
@@ -21,6 +53,38 @@ export default {
           year: 2000,
           rating: 10,
           poster: require("@/assets/affiche_type.webp"),
+          actors: [
+            {
+              id: 1,
+              name: "Actor's name",
+              char: "Actor's char",
+              picture: require("@/assets/default_actor.webp"),
+            },
+            {
+              id: 2,
+              name: "Actor's name",
+              char: "Actor's char",
+              picture: require("@/assets/default_actor.webp"),
+            },
+            {
+              id: 3,
+              name: "Actor's name",
+              char: "Actor's char",
+              picture: require("@/assets/default_actor.webp"),
+            },
+            {
+              id: 4,
+              name: "Actor's name",
+              char: "Actor's char",
+              picture: require("@/assets/default_actor.webp"),
+            },
+            {
+              id: 5,
+              name: "Actor's name",
+              char: "Actor's char",
+              picture: require("@/assets/default_actor.webp"),
+            },
+          ],
           saved: true,
         },
         {
@@ -29,6 +93,38 @@ export default {
           year: 2000,
           rating: 10,
           poster: require("@/assets/affiche_type.webp"),
+          actors: [
+            {
+              id: 1,
+              name: "Actor's name",
+              char: "Actor's char",
+              picture: require("@/assets/default_actor.webp"),
+            },
+            {
+              id: 2,
+              name: "Actor's name",
+              char: "Actor's char",
+              picture: require("@/assets/default_actor.webp"),
+            },
+            {
+              id: 3,
+              name: "Actor's name",
+              char: "Actor's char",
+              picture: require("@/assets/default_actor.webp"),
+            },
+            {
+              id: 4,
+              name: "Actor's name",
+              char: "Actor's char",
+              picture: require("@/assets/default_actor.webp"),
+            },
+            {
+              id: 5,
+              name: "Actor's name",
+              char: "Actor's char",
+              picture: require("@/assets/default_actor.webp"),
+            },
+          ],
           saved: false,
         },
         {
@@ -37,6 +133,38 @@ export default {
           year: 2000,
           rating: 10,
           poster: require("@/assets/affiche_type.webp"),
+          actors: [
+            {
+              id: 1,
+              name: "Actor's name",
+              char: "Actor's char",
+              picture: require("@/assets/default_actor.webp"),
+            },
+            {
+              id: 2,
+              name: "Actor's name",
+              char: "Actor's char",
+              picture: require("@/assets/default_actor.webp"),
+            },
+            {
+              id: 3,
+              name: "Actor's name",
+              char: "Actor's char",
+              picture: require("@/assets/default_actor.webp"),
+            },
+            {
+              id: 4,
+              name: "Actor's name",
+              char: "Actor's char",
+              picture: require("@/assets/default_actor.webp"),
+            },
+            {
+              id: 5,
+              name: "Actor's name",
+              char: "Actor's char",
+              picture: require("@/assets/default_actor.webp"),
+            },
+          ],
           saved: false,
         },
         {
@@ -45,6 +173,38 @@ export default {
           year: 2000,
           rating: 10,
           poster: require("@/assets/affiche_type.webp"),
+          actors: [
+            {
+              id: 1,
+              name: "Actor's name",
+              char: "Actor's char",
+              picture: require("@/assets/default_actor.webp"),
+            },
+            {
+              id: 2,
+              name: "Actor's name",
+              char: "Actor's char",
+              picture: require("@/assets/default_actor.webp"),
+            },
+            {
+              id: 3,
+              name: "Actor's name",
+              char: "Actor's char",
+              picture: require("@/assets/default_actor.webp"),
+            },
+            {
+              id: 4,
+              name: "Actor's name",
+              char: "Actor's char",
+              picture: require("@/assets/default_actor.webp"),
+            },
+            {
+              id: 5,
+              name: "Actor's name",
+              char: "Actor's char",
+              picture: require("@/assets/default_actor.webp"),
+            },
+          ],
           saved: false,
         },
         {
@@ -53,6 +213,38 @@ export default {
           year: 2000,
           rating: 10,
           poster: require("@/assets/affiche_type.webp"),
+          actors: [
+            {
+              id: 1,
+              name: "Actor's name",
+              char: "Actor's char",
+              picture: require("@/assets/default_actor.webp"),
+            },
+            {
+              id: 2,
+              name: "Actor's name",
+              char: "Actor's char",
+              picture: require("@/assets/default_actor.webp"),
+            },
+            {
+              id: 3,
+              name: "Actor's name",
+              char: "Actor's char",
+              picture: require("@/assets/default_actor.webp"),
+            },
+            {
+              id: 4,
+              name: "Actor's name",
+              char: "Actor's char",
+              picture: require("@/assets/default_actor.webp"),
+            },
+            {
+              id: 5,
+              name: "Actor's name",
+              char: "Actor's char",
+              picture: require("@/assets/default_actor.webp"),
+            },
+          ],
           saved: false,
         },
         {
@@ -61,6 +253,38 @@ export default {
           year: 2000,
           rating: 10,
           poster: require("@/assets/affiche_type.webp"),
+          actors: [
+            {
+              id: 1,
+              name: "Actor's name",
+              char: "Actor's char",
+              picture: require("@/assets/default_actor.webp"),
+            },
+            {
+              id: 2,
+              name: "Actor's name",
+              char: "Actor's char",
+              picture: require("@/assets/default_actor.webp"),
+            },
+            {
+              id: 3,
+              name: "Actor's name",
+              char: "Actor's char",
+              picture: require("@/assets/default_actor.webp"),
+            },
+            {
+              id: 4,
+              name: "Actor's name",
+              char: "Actor's char",
+              picture: require("@/assets/default_actor.webp"),
+            },
+            {
+              id: 5,
+              name: "Actor's name",
+              char: "Actor's char",
+              picture: require("@/assets/default_actor.webp"),
+            },
+          ],
           saved: true,
         },
         {
@@ -69,6 +293,38 @@ export default {
           year: 2000,
           rating: 10,
           poster: require("@/assets/affiche_type.webp"),
+          actors: [
+            {
+              id: 1,
+              name: "Actor's name",
+              char: "Actor's char",
+              picture: require("@/assets/default_actor.webp"),
+            },
+            {
+              id: 2,
+              name: "Actor's name",
+              char: "Actor's char",
+              picture: require("@/assets/default_actor.webp"),
+            },
+            {
+              id: 3,
+              name: "Actor's name",
+              char: "Actor's char",
+              picture: require("@/assets/default_actor.webp"),
+            },
+            {
+              id: 4,
+              name: "Actor's name",
+              char: "Actor's char",
+              picture: require("@/assets/default_actor.webp"),
+            },
+            {
+              id: 5,
+              name: "Actor's name",
+              char: "Actor's char",
+              picture: require("@/assets/default_actor.webp"),
+            },
+          ],
           saved: false,
         },
         {
@@ -77,6 +333,38 @@ export default {
           year: 2000,
           rating: 10,
           poster: require("@/assets/affiche_type.webp"),
+          actors: [
+            {
+              id: 1,
+              name: "Actor's name",
+              char: "Actor's char",
+              picture: require("@/assets/default_actor.webp"),
+            },
+            {
+              id: 2,
+              name: "Actor's name",
+              char: "Actor's char",
+              picture: require("@/assets/default_actor.webp"),
+            },
+            {
+              id: 3,
+              name: "Actor's name",
+              char: "Actor's char",
+              picture: require("@/assets/default_actor.webp"),
+            },
+            {
+              id: 4,
+              name: "Actor's name",
+              char: "Actor's char",
+              picture: require("@/assets/default_actor.webp"),
+            },
+            {
+              id: 5,
+              name: "Actor's name",
+              char: "Actor's char",
+              picture: require("@/assets/default_actor.webp"),
+            },
+          ],
           saved: false,
         },
         {
@@ -85,6 +373,38 @@ export default {
           year: 2000,
           rating: 10,
           poster: require("@/assets/affiche_type.webp"),
+          actors: [
+            {
+              id: 1,
+              name: "Actor's name",
+              char: "Actor's char",
+              picture: require("@/assets/default_actor.webp"),
+            },
+            {
+              id: 2,
+              name: "Actor's name",
+              char: "Actor's char",
+              picture: require("@/assets/default_actor.webp"),
+            },
+            {
+              id: 3,
+              name: "Actor's name",
+              char: "Actor's char",
+              picture: require("@/assets/default_actor.webp"),
+            },
+            {
+              id: 4,
+              name: "Actor's name",
+              char: "Actor's char",
+              picture: require("@/assets/default_actor.webp"),
+            },
+            {
+              id: 5,
+              name: "Actor's name",
+              char: "Actor's char",
+              picture: require("@/assets/default_actor.webp"),
+            },
+          ],
           saved: false,
         },
         {
@@ -93,6 +413,38 @@ export default {
           year: 2000,
           rating: 10,
           poster: require("@/assets/affiche_type.webp"),
+          actors: [
+            {
+              id: 1,
+              name: "Actor's name",
+              char: "Actor's char",
+              picture: require("@/assets/default_actor.webp"),
+            },
+            {
+              id: 2,
+              name: "Actor's name",
+              char: "Actor's char",
+              picture: require("@/assets/default_actor.webp"),
+            },
+            {
+              id: 3,
+              name: "Actor's name",
+              char: "Actor's char",
+              picture: require("@/assets/default_actor.webp"),
+            },
+            {
+              id: 4,
+              name: "Actor's name",
+              char: "Actor's char",
+              picture: require("@/assets/default_actor.webp"),
+            },
+            {
+              id: 5,
+              name: "Actor's name",
+              char: "Actor's char",
+              picture: require("@/assets/default_actor.webp"),
+            },
+          ],
           saved: false,
         },
         {
@@ -101,6 +453,38 @@ export default {
           year: 2000,
           rating: 10,
           poster: require("@/assets/affiche_type.webp"),
+          actors: [
+            {
+              id: 1,
+              name: "Actor's name",
+              char: "Actor's char",
+              picture: require("@/assets/default_actor.webp"),
+            },
+            {
+              id: 2,
+              name: "Actor's name",
+              char: "Actor's char",
+              picture: require("@/assets/default_actor.webp"),
+            },
+            {
+              id: 3,
+              name: "Actor's name",
+              char: "Actor's char",
+              picture: require("@/assets/default_actor.webp"),
+            },
+            {
+              id: 4,
+              name: "Actor's name",
+              char: "Actor's char",
+              picture: require("@/assets/default_actor.webp"),
+            },
+            {
+              id: 5,
+              name: "Actor's name",
+              char: "Actor's char",
+              picture: require("@/assets/default_actor.webp"),
+            },
+          ],
           saved: false,
         },
         {
@@ -109,6 +493,38 @@ export default {
           year: 2000,
           rating: 10,
           poster: require("@/assets/affiche_type.webp"),
+          actors: [
+            {
+              id: 1,
+              name: "Actor's name",
+              char: "Actor's char",
+              picture: require("@/assets/default_actor.webp"),
+            },
+            {
+              id: 2,
+              name: "Actor's name",
+              char: "Actor's char",
+              picture: require("@/assets/default_actor.webp"),
+            },
+            {
+              id: 3,
+              name: "Actor's name",
+              char: "Actor's char",
+              picture: require("@/assets/default_actor.webp"),
+            },
+            {
+              id: 4,
+              name: "Actor's name",
+              char: "Actor's char",
+              picture: require("@/assets/default_actor.webp"),
+            },
+            {
+              id: 5,
+              name: "Actor's name",
+              char: "Actor's char",
+              picture: require("@/assets/default_actor.webp"),
+            },
+          ],
           saved: false,
         },
         {
@@ -117,6 +533,38 @@ export default {
           year: 2000,
           rating: 10,
           poster: require("@/assets/affiche_type.webp"),
+          actors: [
+            {
+              id: 1,
+              name: "Actor's name",
+              char: "Actor's char",
+              picture: require("@/assets/default_actor.webp"),
+            },
+            {
+              id: 2,
+              name: "Actor's name",
+              char: "Actor's char",
+              picture: require("@/assets/default_actor.webp"),
+            },
+            {
+              id: 3,
+              name: "Actor's name",
+              char: "Actor's char",
+              picture: require("@/assets/default_actor.webp"),
+            },
+            {
+              id: 4,
+              name: "Actor's name",
+              char: "Actor's char",
+              picture: require("@/assets/default_actor.webp"),
+            },
+            {
+              id: 5,
+              name: "Actor's name",
+              char: "Actor's char",
+              picture: require("@/assets/default_actor.webp"),
+            },
+          ],
           saved: false,
         },
       ],

@@ -1,6 +1,6 @@
 <template>
   <div class="card">
-    <div :style="moviePoster" class="card__img">
+    <div :style="moviePoster" class="card__img" @click="showMovie">
       <article class="card__article">
         <header class="card__article__header">
           <h4>{{ movie.title }}</h4>
@@ -14,16 +14,25 @@
         </div>
       </article>
     </div>
-    <movie-rating :show="showDialog" @close="closeDialog"></movie-rating>
+    <movie-rating :show="showRatingModal" @close="closeDialog"></movie-rating>
+    <movie-details
+      :show="showMovieModal"
+      type="movie"
+      @close="closeDialog"
+      :movie="movie"
+    ></movie-details>
   </div>
 </template>
 
 <script setup>
 import MovieRating from "../movies/MovieRating.vue";
+import MovieDetails from "../movies/MovieDetails.vue";
 import { defineProps, computed, ref } from "vue";
 import { useStore } from "vuex";
 
-const showDialog = ref(false);
+const showRatingModal = ref(false);
+const showMovieModal = ref(false);
+const scrollHeight = ref(0);
 
 const store = useStore();
 const props = defineProps({
@@ -41,12 +50,24 @@ const moviePoster = computed(() => {
 });
 
 const markAsRead = () => {
-  showDialog.value = true;
+  showRatingModal.value = true;
   store.dispatch("movies/rateMovie", props.movie);
 };
 
+const showMovie = (event) => {
+  if (!event.target.classList.contains("badge")) {
+    scrollHeight.value = event.pageY - event.clientY;
+    window.scrollTo(0, 0);
+    document.body.classList.add("modal-open");
+    showMovieModal.value = true;
+  }
+};
+
 const closeDialog = () => {
-  showDialog.value = false;
+  showRatingModal.value = false;
+  showMovieModal.value = false;
+  window.scrollTo(0, scrollHeight.value);
+  document.body.classList.remove("modal-open");
 };
 </script>
 

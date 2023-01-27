@@ -30,6 +30,7 @@ import {
 /* import base UI components */
 import BaseButton from "./components/UI/BaseButton.vue";
 import BaseMovieCard from "./components/UI/BaseMovieCard.vue";
+import BaseActorCard from "./components/UI/BaseActorCard.vue";
 import BaseCarousel from "./components/UI/BaseCarousel.vue";
 import BaseFlag from "./components/UI/BaseFlag.vue";
 import BaseSearchBar from "./components/UI/BaseSearchBar.vue";
@@ -53,6 +54,7 @@ const app = createApp(App);
 
 app.component("base-button", BaseButton);
 app.component("base-movie-card", BaseMovieCard);
+app.component("base-actor-card", BaseActorCard);
 app.component("base-carousel", BaseCarousel);
 app.component("base-flag", BaseFlag);
 app.component("base-search-bar", BaseSearchBar);

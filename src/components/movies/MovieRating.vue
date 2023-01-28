@@ -40,7 +40,7 @@
 </template>
 
 <script setup>
-import { defineProps, defineEmits, ref } from "vue";
+import { ref } from "vue";
 
 defineProps(["show"]);
 const emits = defineEmits(["close"]);

@@ -17,7 +17,7 @@
 </template>
 
 <script setup>
-import { defineEmits, defineProps, ref, computed } from "vue";
+import { ref, computed } from "vue";
 
 const inputValue = ref("");
 defineProps(["defaultText"]);

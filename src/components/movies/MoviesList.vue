@@ -34,7 +34,7 @@ import "swiper/css";
 // import required modules
 import { Navigation } from "swiper";
 
-import { ref, computed, defineProps } from "vue";
+import { ref, computed } from "vue";
 import { useStore } from "vuex";
 import { useRoute } from "vue-router";
 

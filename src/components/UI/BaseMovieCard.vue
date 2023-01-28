@@ -27,7 +27,7 @@
 <script setup>
 import MovieRating from "../movies/MovieRating.vue";
 import MovieDetails from "../movies/MovieDetails.vue";
-import { defineProps, computed, ref } from "vue";
+import { computed, ref } from "vue";
 import { useStore } from "vuex";
 
 const showRatingModal = ref(false);

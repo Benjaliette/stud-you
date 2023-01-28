@@ -47,7 +47,7 @@
 </template>
 
 <script setup>
-import { defineProps, defineEmits, computed } from "vue";
+import { computed } from "vue";
 
 defineProps(["show", "type", "movie"]);
 const emits = defineEmits(["close"]);

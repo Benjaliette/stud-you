@@ -13,7 +13,7 @@
 </template>
 
 <script setup>
-import { defineProps, defineEmits, computed, ref } from "vue";
+import { computed, ref } from "vue";
 import { onClickOutside } from "@vueuse/core";
 import NavLink from "../layouts/NavLink.vue";
 

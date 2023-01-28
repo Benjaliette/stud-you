@@ -10,9 +10,9 @@
         </router-link>
         <base-search-bar
           defaultText="Search for a movie/user"
-          v-if="!isLanding"
+          v-if="!landing"
         ></base-search-bar>
-        <div class="header__account" v-if="!isLanding">
+        <div class="header__account" v-if="!landing">
           <div v-if="isAuth" class="account-avatar">
             <base-avatar
               :online="isAuth"
@@ -26,11 +26,7 @@
             ></user-dropdown>
           </div>
           <div v-else>
-            <base-button
-              link
-              to="browse"
-              :type="{ color: 'white', size: 'xs' }"
-            >
+            <base-button link to="login" :type="{ color: 'white', size: 'xs' }">
               Log in
             </base-button>
           </div>
@@ -41,20 +37,19 @@
 </template>
 
 <script setup>
+import UserDropdown from "../users/UserDropdown.vue";
+
 import { computed, ref } from "vue";
 import { useRoute } from "vue-router";
 import { useStore } from "vuex";
 
-import UserDropdown from "../users/UserDropdown.vue";
-
 const route = useRoute();
 const store = useStore();
 
-const showDropdown = ref(false);
-
-const isLanding = computed(() => {
-  return route.name === "home";
+defineProps({
+  landing: Boolean,
 });
+const showDropdown = ref(false);
 
 const isAuth = computed(() => {
   return store.getters["users/isAuth"];

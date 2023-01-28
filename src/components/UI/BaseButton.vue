@@ -58,7 +58,7 @@ const color = computed(() => {
   transition: transform 0.1s ease;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
 }
 
 a.btn {
@@ -79,7 +79,7 @@ a.btn {
   background: white;
   border: 1px solid black;
   color: var(--black);
-  font-weight: bold !important;
+  font-weight: bold;
 }
 
 .btn-blue {
@@ -111,5 +111,12 @@ button.btn-sm {
 
 button.btn-xs {
   height: 40px;
+}
+
+.btn-xl {
+  width: 100%;
+  border-radius: 8px;
+  font-size: 14px;
+  letter-spacing: 4px;
 }
 </style>

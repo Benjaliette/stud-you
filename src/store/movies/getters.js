@@ -14,4 +14,7 @@ export default {
   upcomingMovies(state) {
     return state.movies;
   },
+  lastMovie(state) {
+    return state.movies[0];
+  },
 };

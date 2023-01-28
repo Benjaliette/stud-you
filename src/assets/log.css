@@ -1,0 +1,64 @@
+header h1 {
+  font-size: 2rem;
+  text-align: center;
+}
+
+.log__form-input {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.log__form-input img {
+  object-fit: cover;
+  width: 2rem;
+  height: 150%;
+}
+
+.log__form-input input {
+  width: 100%;
+  appearance: none;
+  background: transparent;
+  color: white;
+  border: none;
+  border-bottom: 1.5px solid white;
+  padding: 1rem 0rem;
+  font-size: 16px;
+}
+
+.log__form-input input:focus {
+  outline: none;
+}
+
+.log__form-input hr {
+  flex-grow: 1;
+}
+
+.log__form-input span {
+  margin: 0 1rem;
+}
+
+.log__form-action {
+  width: 100%;
+}
+
+.log__form-action p {
+  font-size: 14px;
+}
+
+.log__form-action p a {
+  color: var(--blue);
+  text-decoration: underline;
+}
+
+.log__form-action p a:hover {
+  font-weight: bold;
+}
+
+.img-background {
+  height: 100%;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}

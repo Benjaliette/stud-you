@@ -1,7 +1,7 @@
 <template>
-  <the-header></the-header>
-  <section class="body__section">
-    <the-navbar v-if="!isLanding"></the-navbar>
+  <the-header :landing="isLanding" v-if="!isLogger"></the-header>
+  <section class="body__section" :class="fullPage">
+    <the-navbar v-if="!isLanding && !isLogger"></the-navbar>
     <main :class="onLanding">
       <router-view />
     </main>
@@ -20,8 +20,16 @@ const isLanding = computed(() => {
   return route.name === "home";
 });
 
+const isLogger = computed(() => {
+  return route.name === "login" || route.name === "signup";
+});
+
 const onLanding = computed(() => {
   return { welcome: isLanding.value };
+});
+
+const fullPage = computed(() => {
+  return { "full-page": isLogger.value };
 });
 </script>
 
@@ -65,6 +73,10 @@ section.body__section {
   height: 90vh;
 }
 
+section.body__section.full-page {
+  height: 100vh;
+}
+
 main {
   width: 75vw;
   padding: 20px;
@@ -77,6 +89,16 @@ main.welcome {
   position: relative;
   width: 85vw;
   left: 0px;
+}
+
+section.body__section.full-page main {
+  position: relative;
+  width: 100vw;
+  left: 0px;
+  padding: 0px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
 }
 
 @media (max-width: 960px) {

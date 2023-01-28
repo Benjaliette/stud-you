@@ -1,19 +1,11 @@
 <template>
   <log-layout>
     <template v-slot:header>
-      <h1>Welcome <span class="blue">back</span>!</h1>
+      <h1>Welcome to the<br /><span class="blue">Stud</span> Family</h1>
     </template>
     <template v-slot:default>
       <div class="log__form-input">
-        <base-button :type="{ color: 'white', size: 'xl' }" link to="/login">
-          <img :src="googleIcon" alt="google icon" />
-          Log in with google
-        </base-button>
-      </div>
-      <div class="log__form-input">
-        <hr />
-        <span>OR</span>
-        <hr />
+        <input type="text" placeholder="Username" />
       </div>
       <div class="log__form-input">
         <input type="text" placeholder="E-mail" />
@@ -21,13 +13,19 @@
       <div class="log__form-input">
         <input type="password" placeholder="Password" />
       </div>
+      <div class="log__form-input">
+        <base-button :type="{ color: 'white', size: 'xl' }" link to="/login">
+          <img :src="googleIcon" alt="google icon" />
+          Sign up with google
+        </base-button>
+      </div>
       <div class="log__form-action">
         <base-button :type="{ color: 'blue', size: 'xl' }" :link="false">
-          Log in
+          Sign up
         </base-button>
         <p>
-          Don't have an account?
-          <router-link to="/signup">Sign up for free</router-link>
+          Already have an account?
+          <router-link to="/login">Sign in here</router-link>
         </p>
       </div>
     </template>

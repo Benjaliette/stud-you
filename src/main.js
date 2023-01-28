@@ -26,6 +26,7 @@ import {
   faXmark,
   faCheck,
 } from "@fortawesome/free-solid-svg-icons";
+import { faGoogle } from "@fortawesome/free-brands-svg-icons";
 
 /* import base UI components */
 import BaseButton from "./components/UI/BaseButton.vue";
@@ -47,7 +48,8 @@ library.add(
   faArrowRightFromBracket,
   faMagnifyingGlass,
   faXmark,
-  faCheck
+  faCheck,
+  faGoogle
 );
 
 const app = createApp(App);

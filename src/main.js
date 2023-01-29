@@ -38,6 +38,7 @@ import BaseSearchBar from "./components/UI/BaseSearchBar.vue";
 import BaseAvatar from "./components/UI/BaseAvatar.vue";
 import BaseBadge from "./components/UI/BaseBadge.vue";
 import BaseDialog from "./components/UI/BaseDialog.vue";
+import LoadingSpinner from "./components/UI/LoadingSpinner.vue";
 
 library.add(
   faFilm,
@@ -63,6 +64,7 @@ app.component("base-search-bar", BaseSearchBar);
 app.component("base-avatar", BaseAvatar);
 app.component("base-badge", BaseBadge);
 app.component("base-dialog", BaseDialog);
+app.component("loading-spinner", LoadingSpinner);
 app.component("font-awesome-icon", FontAwesomeIcon);
 
 app.use(store);

@@ -8,6 +8,7 @@ header h1 {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-top: 2rem;
 }
 
 .log__form-input img {
@@ -25,6 +26,30 @@ header h1 {
   border-bottom: 1.5px solid white;
   padding: 1rem 0rem;
   font-size: 16px;
+}
+
+.log__form-input.error {
+  display: block;
+}
+
+.log__form-input.error p,
+.log__form-error {
+  color: var(--red);
+  font-size: 12px;
+  font-style: italic;
+  position: absolute;
+}
+
+.log__form-error {
+  position: relative;
+}
+
+.log__form-input.error input {
+  border-bottom: 1.5px solid var(--red);
+}
+
+.log__form-input.error input::placeholder {
+  color: var(--red);
 }
 
 .log__form-input input:focus {

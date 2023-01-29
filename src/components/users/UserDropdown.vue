@@ -2,10 +2,15 @@
   <div class="user-dropdown" ref="target">
     <h2>{{ userFullName }}</h2>
     <ul class="dropdown__list">
-      <nav-link to="browse" icon="user" dropdown>Profile</nav-link>
+      <nav-link :to="userLink" icon="user" dropdown>Profile</nav-link>
       <nav-link to="browse" icon="gear" dropdown>Settings</nav-link>
-      <nav-link to="browse" icon="heart" dropdown>Watchlist</nav-link>
-      <nav-link to="browse" icon="arrow-right-from-bracket" dropdown>
+      <nav-link to="watchlist" icon="heart" dropdown>Watchlist</nav-link>
+      <nav-link
+        :to="props.route"
+        icon="arrow-right-from-bracket"
+        dropdown
+        @click="logout"
+      >
         <span>Log out</span>
       </nav-link>
     </ul>
@@ -15,16 +20,28 @@
 <script setup>
 import { computed, ref } from "vue";
 import { onClickOutside } from "@vueuse/core";
+import { useRouter, useRoute } from "vue-router";
+import { useStore } from "vuex";
 import NavLink from "../layouts/NavLink.vue";
 
-const props = defineProps(["user"]);
+const props = defineProps(["user", "route"]);
 const emits = defineEmits(["close"]);
 const target = ref(null);
+const router = useRouter();
+const store = useStore();
 
 const userFullName = computed(() => {
-  return `
-    ${capitalize(props.user.firstName)} ${props.user.lastName.toUpperCase()}
-  `;
+  if (props.user.firstName === "" && props.user.lastName === "") {
+    return props.user.username;
+  } else {
+    return `
+      ${capitalize(props.user.firstName)} ${props.user.lastName.toUpperCase()}
+    `;
+  }
+});
+
+const userLink = computed(() => {
+  return `users/${props.user.id}`;
 });
 
 const capitalize = (str) => {
@@ -36,6 +53,10 @@ onClickOutside(target, (event) => {
     emits("close");
   }
 });
+
+const logout = () => {
+  store.dispatch("users/logout");
+};
 </script>
 
 <style scoped>

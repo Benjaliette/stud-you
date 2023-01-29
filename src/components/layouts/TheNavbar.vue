@@ -40,7 +40,12 @@
           Profile
         </nav-link>
         <nav-link icon="gear" to="browse" :active="false">Setting</nav-link>
-        <nav-link icon="arrow-right-from-bracket" to="browse" :active="false">
+        <nav-link
+          icon="arrow-right-from-bracket"
+          :active="false"
+          :to="route.name"
+          @click="logout"
+        >
           Log out
         </nav-link>
       </ul>
@@ -49,7 +54,7 @@
       <h2>Following</h2>
       <div class="section__item">
         <p>You're not authentified <span class="blue">yet ...</span></p>
-        <base-button link to="#" :type="{ color: 'blue', size: 'xs' }">
+        <base-button link to="/login" :type="{ color: 'blue', size: 'xs' }">
           Log in
         </base-button>
       </div>
@@ -83,6 +88,10 @@ const userLink = computed(() => {
   const user = store.getters["users/userLoggedIn"];
   return `users/${user.id}`;
 });
+
+const logout = () => {
+  store.dispatch("users/logout");
+};
 </script>
 
 <style scoped>

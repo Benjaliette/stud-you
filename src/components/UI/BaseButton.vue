@@ -50,6 +50,7 @@ const color = computed(() => {
   border-radius: 100px;
   letter-spacing: 5px;
   text-transform: uppercase;
+  text-align: center;
   font-size: 16px;
   font-weight: bold;
   font-family: "Rubik", Helvetica, Arial sans-serif;

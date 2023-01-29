@@ -5,14 +5,20 @@ export default {
   userLoggedIn(state) {
     return state.localUser.user;
   },
-  userTopMovies(state) {
-    const watchedMovies = state.localUser.user.watchlistMovies.filter(
-      (movie) => movie.read
-    );
-    const sortedMovies = watchedMovies.sort(
-      (movieA, movieB) => movieB.rating - movieA.rating
-    );
+  userWatchlist(state) {
+    return state.localUser.user.watchlistMovies;
+  },
+  userTopMovies(_state, getters) {
+    if (!getters.userWatchlist) {
+      const watchedMovies = getters.userWatchlist.filter((movie) => movie.read);
 
-    return sortedMovies.slice(0, 3);
+      if (watchedMovies.length !== 0) {
+        const sortedMovies = watchedMovies.sort(
+          (movieA, movieB) => movieB.rating - movieA.rating
+        );
+        return sortedMovies.slice(0, 3);
+      }
+    }
+    return null;
   },
 };

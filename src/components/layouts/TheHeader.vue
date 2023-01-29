@@ -22,6 +22,7 @@
             <user-dropdown
               v-if="showDropdown"
               :user="user"
+              :route="route.name"
               @close="toggleDropdown"
             ></user-dropdown>
           </div>

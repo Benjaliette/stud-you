@@ -56,8 +56,8 @@ const submitRating = () => {
   return;
 };
 
-const displayValue = (event) => {
-  console.log(event);
+const displayValue = () => {
+  // console.log(event);
 };
 </script>
 

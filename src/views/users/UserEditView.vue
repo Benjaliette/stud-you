@@ -77,7 +77,6 @@ const user = computed(() => {
 
 const submitForm = (event) => {
   event.preventDefault();
-  console.log(user.value.firstName);
   if (user.value.firstName === "") {
     errors.firstName = true;
   }

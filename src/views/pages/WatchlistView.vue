@@ -13,7 +13,7 @@
       movies
     </p>
   </section>
-  <section v-if="isAuth">
+  <section v-if="isAuth && !noTopMovies">
     <h2>My top films</h2>
     <ul class="list top-movies__list">
       <top-movie-item
@@ -32,14 +32,21 @@ import MoviesList from "@/components/movies/MoviesList.vue";
 import TopMovieItem from "@/components/movies/TopMovieItem.vue";
 
 import { useStore } from "vuex";
-import { computed } from "vue";
+import { computed, ref, onMounted } from "vue";
 
 const store = useStore();
+const noTopMovies = ref(false);
 
 const watchlistMovies = computed(() => store.getters["movies/watchlistMovies"]);
 const userTopMovies = computed(() => store.getters["users/userTopMovies"]);
 
 const isAuth = computed(() => store.getters["users/isAuth"]);
+
+onMounted(() => {
+  if (userTopMovies.value === null) {
+    noTopMovies.value = true;
+  }
+});
 </script>
 
 <style scoped>

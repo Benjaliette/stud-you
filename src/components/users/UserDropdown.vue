@@ -6,7 +6,7 @@
       <nav-link to="browse" icon="gear" dropdown>Settings</nav-link>
       <nav-link to="watchlist" icon="heart" dropdown>Watchlist</nav-link>
       <nav-link
-        :to="props.route"
+        to="browse"
         icon="arrow-right-from-bracket"
         dropdown
         @click="logout"
@@ -20,14 +20,12 @@
 <script setup>
 import { computed, ref } from "vue";
 import { onClickOutside } from "@vueuse/core";
-import { useRouter, useRoute } from "vue-router";
 import { useStore } from "vuex";
 import NavLink from "../layouts/NavLink.vue";
 
-const props = defineProps(["user", "route"]);
+const props = defineProps(["user"]);
 const emits = defineEmits(["close"]);
 const target = ref(null);
-const router = useRouter();
 const store = useStore();
 
 const userFullName = computed(() => {

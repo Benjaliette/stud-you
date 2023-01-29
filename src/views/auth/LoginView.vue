@@ -5,7 +5,11 @@
     </template>
     <template v-slot:default>
       <div class="log__form-input">
-        <base-button :type="{ color: 'white', size: 'xl' }" link to="/login">
+        <base-button
+          :type="{ color: 'white', size: 'xl' }"
+          :link="false"
+          @click="signWithGoogle"
+        >
           <img :src="googleIcon" alt="google icon" />
           Log in with google
         </base-button>
@@ -129,6 +133,20 @@ const submitForm = async (event) => {
     isLoading.value = false;
     await redirect();
   }
+};
+
+const signWithGoogle = async (event) => {
+  event.preventDefault();
+  errors.global = false;
+  isLoading.value = true;
+  try {
+    await store.dispatch("users/loginWithGoogle");
+  } catch (error) {
+    errors.global = true;
+    isValid.value = false;
+  }
+  isLoading.value = false;
+  await redirect();
 };
 </script>
 

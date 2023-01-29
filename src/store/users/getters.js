@@ -6,10 +6,14 @@ export default {
     return state.localUser.user;
   },
   userWatchlist(state) {
-    return state.localUser.user.watchlistMovies;
+    if (state.localUser.user.watchlistMovies) {
+      return state.localUser.user.watchlistMovies;
+    } else {
+      return null;
+    }
   },
   userTopMovies(_state, getters) {
-    if (!getters.userWatchlist) {
+    if (getters.userWatchlist.length !== 0) {
       const watchedMovies = getters.userWatchlist.filter((movie) => movie.read);
 
       if (watchedMovies.length !== 0) {

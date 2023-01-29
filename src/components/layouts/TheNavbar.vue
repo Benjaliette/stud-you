@@ -43,7 +43,7 @@
         <nav-link
           icon="arrow-right-from-bracket"
           :active="false"
-          :to="route.name"
+          to="browse"
           @click="logout"
         >
           Log out

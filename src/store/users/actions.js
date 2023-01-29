@@ -2,6 +2,8 @@ import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  GoogleAuthProvider,
+  signInWithPopup,
 } from "firebase/auth";
 import { initializeApp } from "firebase/app";
 import axios from "axios";
@@ -27,7 +29,7 @@ export default {
           username: data.username,
           description: "",
           profilePicture: require("@/assets/default_avatar.png"),
-          watchlistMovies: [],
+          watchlistMovies: {},
         };
         context.commit("addUser", { user, app });
         context.commit("logSuccess", user);
@@ -55,6 +57,57 @@ export default {
     } catch (error) {
       const errorCode = error.code;
       context.commit("logFailure");
+      throw errorCode;
+    }
+  },
+  async signupWithGoogle(context) {
+    try {
+      const app = await initializeApp(context.rootGetters.firebaseConfig);
+      const auth = await getAuth(app);
+      const provider = new GoogleAuthProvider();
+      const response = await signInWithPopup(auth, provider);
+      if (response) {
+        const credential = GoogleAuthProvider.credentialFromResult(response);
+        const userResponse = response.user;
+        const user = {
+          id: userResponse.uid,
+          email: userResponse.email,
+          accessToken: userResponse.accessToken,
+          firstName: userResponse.displayName.split(" ")[0],
+          lastName: userResponse.displayName.split(" ").pop().toLowerCase(),
+          username: "",
+          description: "",
+          profilePicture: require("@/assets/default_avatar.png"),
+          watchlistMovies: [],
+        };
+
+        context.commit("addUser", { user, app });
+        context.commit("logSuccess", user);
+      }
+    } catch (error) {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      const email = error.customData.email;
+      const credential = GoogleAuthProvider.credentialFromError(error);
+      throw errorCode;
+    }
+  },
+  async loginWithGoogle(context) {
+    try {
+      const app = await initializeApp(context.rootGetters.firebaseConfig);
+      const auth = await getAuth(app);
+      const provider = new GoogleAuthProvider();
+      const response = await signInWithPopup(auth, provider);
+      if (response) {
+        axios(
+          `https://stud-you-c57a9-default-rtdb.europe-west1.firebasedatabase.app/users/${response.user.uid}.json`
+        ).then((response) => context.commit("logSuccess", response.data));
+      }
+    } catch (error) {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      const email = error.customData.email;
+      const credential = GoogleAuthProvider.credentialFromError(error);
       throw errorCode;
     }
   },

@@ -13,22 +13,7 @@
       <article>
         <h3>Synopsis</h3>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
-        </p>
-      </article>
-      <article>
-        <h3>Details</h3>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat.
+          {{ movie.description }}
         </p>
       </article>
       <article>
@@ -47,25 +32,33 @@
 </template>
 
 <script setup>
-import { computed } from "vue";
+import { computed, onUpdated } from "vue";
+import { useStore } from "vuex";
 
-defineProps(["show", "type", "movie"]);
+const props = defineProps(["show", "type", "movie"]);
 const emits = defineEmits(["close"]);
+const store = useStore();
 
 const imageBackground = computed(() => {
-  const img = require("@/assets/affiche_type.webp");
-  return { backgroundImage: `url(${img})` };
+  return { backgroundImage: `url(${props.movie.poster})` };
 });
 
 const close = () => {
   emits("close");
 };
+
+onUpdated(() => {
+  if (props.show === true) {
+    store.dispatch("movies/getActors", props.movie);
+    store.dispatch("movies/getMoviesOverview", props.movie);
+  }
+});
 </script>
 
 <style scoped>
 .img-background {
   height: 100%;
-  background-position: center;
+  background-position: 50% 25%;
   background-size: cover;
   background-repeat: no-repeat;
   border-radius: 20px 20px 0px 0px;
@@ -87,8 +80,9 @@ const close = () => {
 }
 
 .cards {
-  display: flex;
-  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 2rem;
   list-style: none;
   padding: 0;
 }

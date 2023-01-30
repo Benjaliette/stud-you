@@ -1,5 +1,5 @@
 <template>
-  <base-carousel></base-carousel>
+  <base-carousel :movies="popularMovies"></base-carousel>
   <section>
     <h2>Now playing</h2>
     <div class="cards">
@@ -24,6 +24,7 @@ const store = useStore();
 
 const nowPlayingMovies = computed(() => store.getters["movies/nowPlaying"]);
 const topMovies = computed(() => store.getters["movies/topMovies"]);
+const popularMovies = computed(() => store.getters["movies/movies"]);
 </script>
 
 <style scoped>

@@ -45,4 +45,8 @@ const imageBackground = computed(() => {
 .card__header p {
   margin: 0;
 }
+
+.card__header p {
+  font-size: 12px;
+}
 </style>

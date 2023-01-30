@@ -13,12 +13,12 @@
     :modules="modules"
     class="mySwiper"
   >
-    <swiper-slide v-for="movie in 5" :key="movie">
+    <swiper-slide v-for="movie in carouselMovies" :key="movie">
       <header>
-        <h2>Movie name</h2>
+        <h2>{{ movie.title }}</h2>
         <div class="header__subtitle">
-          <h3>Year</h3>
-          <h3>RATE</h3>
+          <h3>{{ movie.year }}</h3>
+          <h3>{{ movie.rating }}</h3>
         </div>
         <div class="header__actions">
           <base-button link to="browse" :type="{ color: 'blue', size: 'sm' }">
@@ -26,7 +26,7 @@
           </base-button>
         </div>
       </header>
-      <div class="swiper-slide__img" :style="swiperImage"></div>
+      <div class="swiper-slide__img" :style="swiperImage(movie.poster)"></div>
     </swiper-slide>
   </swiper>
 </template>
@@ -46,13 +46,17 @@ import { Autoplay, Pagination, Navigation } from "swiper";
 import { ref, computed } from "vue";
 
 const modules = ref([Autoplay, Pagination, Navigation]);
+const props = defineProps(["movies"]);
 
-const swiperImage = computed(() => {
-  const img = require("../../assets/affiche_type.webp");
+const carouselMovies = computed(() => {
+  return props.movies.slice(0, 5);
+});
+
+const swiperImage = (img) => {
   return {
     backgroundImage: `linear-gradient(90deg, #000000 4%, rgba(0, 0, 0, 0) 100%), url(${img})`,
   };
-});
+};
 </script>
 
 <style scoped>

@@ -11,10 +11,12 @@
 <script setup>
 import TheHeader from "./components/layouts/TheHeader.vue";
 import TheNavbar from "./components/layouts/TheNavbar.vue";
-import { computed } from "vue";
+import { computed, onMounted } from "vue";
 import { useRoute } from "vue-router";
+import { useStore } from "vuex";
 
 const route = useRoute();
+const store = useStore();
 
 const isLanding = computed(() => {
   return route.name === "home";
@@ -30,6 +32,10 @@ const onLanding = computed(() => {
 
 const fullPage = computed(() => {
   return { "full-page": isLogger.value };
+});
+
+onMounted(() => {
+  store.dispatch("movies/getMovies");
 });
 </script>
 

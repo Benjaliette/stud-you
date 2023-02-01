@@ -4,74 +4,20 @@ const baseUrl = "https://api.themoviedb.org/3/movie/";
 const basePicUrl = "https://image.tmdb.org/t/p/original";
 
 export default {
-  markMovieAsSaved(context, data) {
-    context.commit("markMovie", data);
-  },
   rateMovie(context, data) {
     context.commit("addRating", data);
   },
-  async loadPopularMovies(context) {
-    if (context.state.movies.popular.length === 0) {
-      const url = `${baseUrl}popular?api_key=${process.env.VUE_APP_TMDB_KEY}`;
-      const response = await axios.get(url);
-      const movies = await response.data.results.map((movie) => {
-        return {
-          id: movie.id,
-          title: movie.title,
-          year: Number(movie.release_date.split("-")[0]),
-          rating: movie.vote_average,
-          poster: `${basePicUrl}${movie.poster_path}`,
-        };
-      });
-      context.state.movies.popular = movies;
-    }
-  },
-  async loadTopRatedMovies(context) {
-    if (context.state.movies.topRated.length === 0) {
-      const url = `${baseUrl}top_rated?api_key=${process.env.VUE_APP_TMDB_KEY}`;
-      const response = await axios.get(url);
-      const movies = await response.data.results.map((movie) => {
-        return {
-          id: movie.id,
-          title: movie.title,
-          year: Number(movie.release_date.split("-")[0]),
-          rating: movie.vote_average,
-          poster: `${basePicUrl}${movie.poster_path}`,
-        };
-      });
-      context.state.movies.topRated = movies;
-    }
-  },
-  async loadUpcomingMovies(context) {
-    if (context.state.movies.upcoming.length === 0) {
-      const url = `${baseUrl}upcoming?api_key=${process.env.VUE_APP_TMDB_KEY}`;
-      const response = await axios.get(url);
-      const movies = await response.data.results.map((movie) => {
-        return {
-          id: movie.id,
-          title: movie.title,
-          year: Number(movie.release_date.split("-")[0]),
-          rating: movie.vote_average,
-          poster: `${basePicUrl}${movie.poster_path}`,
-        };
-      });
-      context.state.movies.upcoming = movies;
-    }
-  },
-  async loadNowPlayingMovies(context) {
-    if (context.state.movies.nowPlaying.length === 0) {
-      const url = `${baseUrl}now_playing?api_key=${process.env.VUE_APP_TMDB_KEY}`;
-      const response = await axios.get(url);
-      const movies = await response.data.results.map((movie) => {
-        return {
-          id: movie.id,
-          title: movie.title,
-          year: Number(movie.release_date.split("-")[0]),
-          rating: movie.vote_average,
-          poster: `${basePicUrl}${movie.poster_path}`,
-        };
-      });
-      context.state.movies.nowPlaying = movies;
+  async loadMovies(context) {
+    if (context.state.movies.length === 0) {
+      const apiKey = process.env.VUE_APP_TMDB_KEY;
+      const popularUrl = `${baseUrl}popular?api_key=${apiKey}`;
+      context.commit("loadMovies", { url: popularUrl, type: "popular" });
+      const topRatedUrl = `${baseUrl}top_rated?api_key=${apiKey}`;
+      context.commit("loadMovies", { url: topRatedUrl, type: "topRated" });
+      const upcomingUrl = `${baseUrl}upcoming?api_key=${apiKey}&region=FR`;
+      context.commit("loadMovies", { url: upcomingUrl, type: "upcoming" });
+      const nowPlayingUrl = `${baseUrl}now_playing?api_key=${apiKey}&region=FR`;
+      context.commit("loadMovies", { url: nowPlayingUrl, type: "nowPlaying" });
     }
   },
   async getMoviesOverview(context, data) {

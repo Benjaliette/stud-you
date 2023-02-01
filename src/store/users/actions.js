@@ -29,7 +29,6 @@ export default {
           username: data.username,
           description: "",
           profilePicture: require("@/assets/default_avatar.png"),
-          watchlistMovies: {},
         };
         context.commit("addUser", { user, app });
         context.commit("logSuccess", user);
@@ -78,7 +77,6 @@ export default {
           username: "",
           description: "",
           profilePicture: require("@/assets/default_avatar.png"),
-          watchlistMovies: [],
         };
 
         context.commit("addUser", { user, app });
@@ -99,9 +97,11 @@ export default {
       const provider = new GoogleAuthProvider();
       const response = await signInWithPopup(auth, provider);
       if (response) {
-        axios(
-          `https://stud-you-c57a9-default-rtdb.europe-west1.firebasedatabase.app/users/${response.user.uid}.json`
-        ).then((response) => context.commit("logSuccess", response.data));
+        axios
+          .get(
+            `https://stud-you-c57a9-default-rtdb.europe-west1.firebasedatabase.app/users/${response.user.uid}.json`
+          )
+          .then((response) => context.commit("logSuccess", response.data));
       }
     } catch (error) {
       const errorCode = error.code;
@@ -113,5 +113,20 @@ export default {
   },
   logout(context) {
     context.commit("logout");
+  },
+  saveMovie(context, data) {
+    const watchlist = context.getters["userWatchlist"];
+    if (watchlist) {
+      const isAlreadySaved = context.getters["userWatchlist"].some(
+        (watchMov) => watchMov.id === data.id
+      );
+      if (isAlreadySaved) {
+        context.commit("removeMovie", data);
+      } else {
+        context.commit("addMovie", data);
+      }
+    } else {
+      context.commit("addMovie", data);
+    }
   },
 };

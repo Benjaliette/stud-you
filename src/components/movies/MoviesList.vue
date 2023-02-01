@@ -16,9 +16,9 @@
         :watchlist="isWatchlist"
       ></base-movie-card>
       <base-flag
-        :marked="movie.saved"
-        @click="markAsSaved(movie)"
-        v-if="!isWatchlist"
+        @watchlist="markAsSaved(movie)"
+        :isMarked="movieInWatchlist(movie)"
+        v-if="!isWatchlist && isAuth"
       ></base-flag>
     </swiper-slide>
   </swiper>
@@ -45,12 +45,30 @@ defineProps(["movies"]);
 const store = useStore();
 
 const markAsSaved = (markedMovie) => {
-  store.dispatch("movies/markMovieAsSaved", markedMovie);
+  store.dispatch("users/saveMovie", markedMovie);
 };
 
 const isWatchlist = computed(() => {
   return route.name === "watchlist";
 });
+
+const isAuth = computed(() => {
+  return store.getters["users/isAuth"];
+});
+
+const movieInWatchlist = (movie) => {
+  const watchlist = store.getters["users/userWatchlist"];
+  if (watchlist) {
+    const markedMovie = watchlist.find((watchMov) => watchMov.id === movie.id);
+    if (markedMovie) {
+      return true;
+    } else {
+      return false;
+    }
+  } else {
+    return false;
+  }
+};
 </script>
 
 <style scoped>

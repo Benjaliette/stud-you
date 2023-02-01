@@ -37,7 +37,7 @@ import { computed, ref, onMounted } from "vue";
 const store = useStore();
 const noTopMovies = ref(false);
 
-const watchlistMovies = computed(() => store.getters["movies/watchlistMovies"]);
+const watchlistMovies = computed(() => store.getters["users/userWatchlist"]);
 const userTopMovies = computed(() => store.getters["users/userTopMovies"]);
 
 const isAuth = computed(() => store.getters["users/isAuth"]);

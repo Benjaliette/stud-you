@@ -7,6 +7,7 @@
         <base-flag
           :marked="movie.saved"
           @click="markAsSaved(movie)"
+          v-if="isAuth"
         ></base-flag>
       </div>
     </div>
@@ -24,6 +25,10 @@ const upcomingMovies = computed(() => store.getters["movies/upcomingMovies"]);
 const markAsSaved = (markedMovie) => {
   store.dispatch("movies/markMovieAsSaved", markedMovie);
 };
+
+const isAuth = computed(() => {
+  return store.getters["users/isAuth"];
+});
 </script>
 
 <style scoped>

@@ -1,15 +1,22 @@
 <template>
-  <div class="bookmark" :class="bookmarkBlue"></div>
+  <div class="bookmark" :class="bookmarkBlue" @click="addToWatchlist"></div>
 </template>
 
 <script setup>
-import { computed } from "vue";
+import { computed, ref } from "vue";
 
-const props = defineProps(["marked"]);
+const emits = defineEmits(["watchlist"]);
+const props = defineProps(["isMarked"]);
+const marked = ref(false);
 
 const bookmarkBlue = computed(() => {
-  return { "bookmark-blue": props.marked };
+  return { "bookmark-blue": marked.value || props.isMarked };
 });
+
+const addToWatchlist = () => {
+  marked.value = !marked.value;
+  emits("watchlist");
+};
 </script>
 
 <style scoped>

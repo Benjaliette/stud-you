@@ -1,22 +1,20 @@
 export default {
   movies(state) {
-    return state.movies.popular;
+    return state.movies.filter((movie) => movie.type.includes("popular"));
   },
   nowPlaying(state) {
-    return state.movies.nowPlaying;
+    return state.movies.filter((movie) => movie.type.includes("nowPlaying"));
   },
   topMovies(state) {
-    return state.movies.topRated;
+    return state.movies.filter((movie) => movie.type.includes("topRated"));
   },
   watchlistMovies(state) {
     return state.movies.filter((movie) => movie.saved);
   },
   upcomingMovies(state) {
-    return state.movies.upcoming;
+    return state.movies.filter((movie) => movie.type.includes("upcoming"));
   },
-  lastMovie(state) {
-    return state.movies.popular[
-      Math.floor(Math.random() * state.movies.popular.length)
-    ];
+  lastMovie(_state, getters) {
+    return getters.movies[Math.floor(Math.random() * getters.movies.length)];
   },
 };

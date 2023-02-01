@@ -6,12 +6,7 @@ export default {
   namespaced: true,
   state() {
     return {
-      movies: {
-        popular: [],
-        nowPlaying: [],
-        topRated: [],
-        upcoming: [],
-      },
+      movies: [],
     };
   },
   getters: MoviesGetters,

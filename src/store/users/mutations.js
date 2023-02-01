@@ -31,4 +31,30 @@ export default {
     set(ref(database, "users/" + payload.user.id), payload.user);
     state.users.push(payload.user);
   },
+  async addMovie(state, payload) {
+    const user = state.localUser.user;
+    const response = await axios.post(
+      `https://stud-you-c57a9-default-rtdb.europe-west1.firebasedatabase.app/users/${user.id}/movies/${payload.id}.json`,
+      payload
+    );
+    if (response.status === 200) {
+      if (user.movies) {
+        user.movies.push(payload);
+      } else {
+        user.movies = [payload];
+      }
+    }
+    localStorage.setItem("user", JSON.stringify(user));
+  },
+  async removeMovie(state, payload) {
+    const user = state.localUser.user;
+    const response = await axios.delete(
+      `https://stud-you-c57a9-default-rtdb.europe-west1.firebasedatabase.app/users/${user.id}/movies/${payload.id}.json`
+    );
+    if (response.status === 200) {
+      const itemIndex = user.movies.findIndex((x) => x.id === payload.id);
+      user.movies.splice(itemIndex, 1);
+    }
+    localStorage.setItem("user", JSON.stringify(user));
+  },
 };

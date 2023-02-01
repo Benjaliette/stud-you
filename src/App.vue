@@ -35,10 +35,7 @@ const fullPage = computed(() => {
 });
 
 onMounted(() => {
-  store.dispatch("movies/loadPopularMovies");
-  store.dispatch("movies/loadTopRatedMovies");
-  store.dispatch("movies/loadUpcomingMovies");
-  store.dispatch("movies/loadNowPlayingMovies");
+  store.dispatch("movies/loadMovies");
 });
 </script>
 

@@ -22,7 +22,7 @@ import { ref, computed } from "vue";
 const inputValue = ref("");
 defineProps(["defaultText"]);
 
-const emits = defineEmits(["search"]);
+const emits = defineEmits(["search", "clear"]);
 
 const glass = computed(() => "fa-solid fa-magnifying-glass");
 const close = computed(() => "fa-solid fa-xmark");
@@ -33,6 +33,7 @@ const getInputValue = () => {
 
 const clearInputValue = () => {
   inputValue.value = "";
+  emits("clear");
 };
 </script>
 

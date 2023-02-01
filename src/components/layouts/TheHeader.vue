@@ -11,6 +11,8 @@
         <base-search-bar
           defaultText="Search for a movie/user"
           v-if="!landing"
+          @search="getMovies"
+          @clear="goBack"
         ></base-search-bar>
         <div class="header__account" v-if="!landing">
           <div v-if="isAuth" class="account-avatar">
@@ -40,16 +42,18 @@
 import UserDropdown from "../users/UserDropdown.vue";
 
 import { computed, ref } from "vue";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import { useStore } from "vuex";
 
 const route = useRoute();
+const router = useRouter();
 const store = useStore();
 
 defineProps({
   landing: Boolean,
 });
 const showDropdown = ref(false);
+const oldRoute = ref(route.name);
 
 const isAuth = computed(() => {
   return store.getters["users/isAuth"];
@@ -66,6 +70,17 @@ const logo = computed(() => {
 
 const toggleDropdown = () => {
   showDropdown.value = !showDropdown.value;
+};
+
+const getMovies = (query) => {
+  if (route.name !== "search") {
+    oldRoute.value = route.name;
+  }
+  router.push({ path: "/search", query: { title: query } });
+};
+
+const goBack = () => {
+  router.replace(oldRoute.value);
 };
 </script>
 

@@ -35,6 +35,11 @@ const routes = [
     component: () => import("../views/auth/SignupView.vue"),
   },
   {
+    path: "/search",
+    name: "search",
+    component: () => import("../views/movies/SearchMovies.vue"),
+  },
+  {
     path: "/users/:id",
     name: "user",
     component: () => import("../views/users/UserProfileView.vue"),

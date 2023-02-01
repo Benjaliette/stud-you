@@ -3,10 +3,6 @@ import axios from "axios";
 const basePicUrl = "https://image.tmdb.org/t/p/original";
 
 export default {
-  addRating(state, payload) {
-    const selectedMovie = state.movies.find((movie) => movie === payload);
-    selectedMovie.rating = payload.rate;
-  },
   async loadMovies(state, payload) {
     const response = await axios.get(payload.url);
     await response.data.results.forEach((movie) => {

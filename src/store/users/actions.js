@@ -114,19 +114,24 @@ export default {
   logout(context) {
     context.commit("logout");
   },
-  saveMovie(context, data) {
+  async saveMovie(context, data) {
+    const app = await initializeApp(context.rootGetters.firebaseConfig);
     const watchlist = context.getters["userWatchlist"];
     if (watchlist) {
-      const isAlreadySaved = context.getters["userWatchlist"].some(
+      const isAlreadySaved = watchlist.some(
         (watchMov) => watchMov.id === data.id
       );
       if (isAlreadySaved) {
-        context.commit("removeMovie", data);
+        context.commit("removeMovie", { movie: data, app: app });
       } else {
-        context.commit("addMovie", data);
+        context.commit("addMovie", { movie: data, app: app });
       }
     } else {
-      context.commit("addMovie", data);
+      context.commit("addMovie", { movie: data, app: app });
     }
+  },
+  async rateMovie(context, data) {
+    const app = await initializeApp(context.rootGetters.firebaseConfig);
+    context.commit("addRate", { movie: data.movie, rate: data.rate, app: app });
   },
 };

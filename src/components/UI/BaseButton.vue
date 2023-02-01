@@ -1,5 +1,5 @@
 <template>
-  <button class="btn" :class="color" v-if="!link">
+  <button type="button" class="btn" :class="color" v-if="!link">
     <slot></slot>
   </button>
   <router-link :to="nextPage" class="btn" :class="color" v-else>

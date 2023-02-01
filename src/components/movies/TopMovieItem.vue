@@ -1,7 +1,7 @@
 <template>
   <li>
     <div class="list-item__index"><slot></slot></div>
-    <base-movie-card :movie="movie"></base-movie-card>
+    <base-movie-card :movie="movie" :top="true"></base-movie-card>
   </li>
 </template>
 

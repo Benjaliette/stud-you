@@ -4,9 +4,6 @@ const baseUrl = "https://api.themoviedb.org/3/movie/";
 const basePicUrl = "https://image.tmdb.org/t/p/original";
 
 export default {
-  rateMovie(context, data) {
-    context.commit("addRating", data);
-  },
   async loadMovies(context) {
     if (context.state.movies.length === 0) {
       const apiKey = process.env.VUE_APP_TMDB_KEY;

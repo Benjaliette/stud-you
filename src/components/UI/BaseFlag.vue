@@ -7,14 +7,14 @@ import { computed, ref } from "vue";
 
 const emits = defineEmits(["watchlist"]);
 const props = defineProps(["isMarked"]);
-const marked = ref(false);
+const marked = ref(null);
 
 const bookmarkBlue = computed(() => {
   return { "bookmark-blue": marked.value || props.isMarked };
 });
 
 const addToWatchlist = () => {
-  marked.value = !marked.value;
+  marked.value = !props.isMarked;
   emits("watchlist");
 };
 </script>

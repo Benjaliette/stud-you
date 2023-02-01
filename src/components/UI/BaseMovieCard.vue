@@ -9,12 +9,13 @@
         <div v-if="props.watchlist">
           <base-badge type="read" @read="markAsRead"></base-badge>
         </div>
-        <div v-else>
+        <div v-else-if="!props.top">
           {{ movie.rating }}
         </div>
       </article>
     </div>
-    <movie-rating :show="showRatingModal" @close="closeDialog"></movie-rating>
+    <movie-rating :show="showRatingModal" @close="closeDialog" :movie="movie">
+    </movie-rating>
     <movie-details
       :show="showMovieModal"
       type="movie"
@@ -41,6 +42,10 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  top: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 const moviePoster = computed(() => {
@@ -51,7 +56,6 @@ const moviePoster = computed(() => {
 
 const markAsRead = () => {
   showRatingModal.value = true;
-  store.dispatch("movies/rateMovie", props.movie);
 };
 
 const showMovie = (event) => {

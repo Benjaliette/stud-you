@@ -1,59 +1,71 @@
 <template>
   <base-dialog :show="show">
-    <div class="dialog__form-input">
-      <h3>What did you<br /><span class="blue">think</span> about it ?</h3>
-      <textarea v-model="review" id="review" cols="30" rows="10"></textarea>
-    </div>
-    <div class="dialog__form-input">
-      <h3>Rate <span class="blue">it</span></h3>
-      <input
-        type="range"
-        v-model="rating"
-        min="0"
-        max="10"
-        step="1"
-        class="slider"
-        @mousedown="displayValue"
-      />
-      <div class="slider__markers">
-        <span>0</span>
-        <span>10</span>
+    <form>
+      <div class="dialog__form-input">
+        <h3>What did you<br /><span class="blue">think</span> about it ?</h3>
+        <textarea v-model="review" id="review" cols="30" rows="10"></textarea>
       </div>
-    </div>
-    <div class="dialog__form-action">
-      <base-button
-        :link="false"
-        :type="{ color: 'blue' }"
-        @click="submitRating"
-      >
-        Submit
-      </base-button>
-      <base-button
-        :link="false"
-        :type="{ color: 'white' }"
-        @click="closeDialog"
-      >
-        Cancel
-      </base-button>
-    </div>
+      <div class="dialog__form-input">
+        <h3>Rate <span class="blue">it</span> ➡ {{ rating }}</h3>
+        <input
+          type="range"
+          v-model="rating"
+          min="0"
+          max="10"
+          step="1"
+          class="slider"
+          @mousedown="displayValue"
+        />
+        <div class="slider__markers">
+          <span>0</span>
+          <span>10</span>
+        </div>
+      </div>
+      <div class="dialog__form-action">
+        <base-button
+          :link="false"
+          :type="{ color: 'blue' }"
+          @click="submitRating"
+        >
+          Submit
+        </base-button>
+        <base-button
+          :link="false"
+          :type="{ color: 'white' }"
+          @click="closeDialog"
+        >
+          Cancel
+        </base-button>
+      </div>
+    </form>
   </base-dialog>
 </template>
 
 <script setup>
 import { ref } from "vue";
+import { useStore } from "vuex";
 
-defineProps(["show"]);
 const emits = defineEmits(["close"]);
+const props = defineProps(["movie", "show"]);
+const store = useStore();
 
 const review = ref("");
-const rating = ref("");
+const rating = ref(0);
 
 const closeDialog = () => {
   emits("close");
 };
 
 const submitRating = () => {
-  return;
+  const rate = {
+    review: review.value,
+    rating: rating.value,
+  };
+  store.dispatch("users/rateMovie", {
+    rate: rate,
+    movie: props.movie,
+  });
+  closeDialog();
 };
 
 const displayValue = () => {

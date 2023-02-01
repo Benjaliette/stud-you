@@ -1,5 +1,5 @@
 import axios from "axios";
-import { getDatabase, set, ref } from "firebase/database";
+import { getDatabase, set, ref, remove } from "firebase/database";
 
 export default {
   markMovie(state, payload) {
@@ -20,11 +20,6 @@ export default {
     state.localUser.user = null;
     localStorage.removeItem("user");
   },
-  async loadUsers() {
-    const response = axios.get(
-      "https://stud-you-c57a9-default-rtdb.europe-west1.firebasedatabase.app/users.json"
-    );
-  },
   async addUser(state, payload) {
     const database = getDatabase(payload.app);
 
@@ -33,28 +28,40 @@ export default {
   },
   async addMovie(state, payload) {
     const user = state.localUser.user;
-    const response = await axios.post(
-      `https://stud-you-c57a9-default-rtdb.europe-west1.firebasedatabase.app/users/${user.id}/movies/${payload.id}.json`,
-      payload
+    const database = getDatabase(payload.app);
+    await set(
+      ref(database, "users/" + user.id + "/movies/" + payload.movie.id),
+      payload.movie
     );
-    if (response.status === 200) {
-      if (user.movies) {
-        user.movies.push(payload);
-      } else {
-        user.movies = [payload];
-      }
+    if (user.movies) {
+      user.movies.push(payload.movie);
+    } else {
+      user.movies = [payload.movie];
     }
     localStorage.setItem("user", JSON.stringify(user));
   },
   async removeMovie(state, payload) {
     const user = state.localUser.user;
-    const response = await axios.delete(
-      `https://stud-you-c57a9-default-rtdb.europe-west1.firebasedatabase.app/users/${user.id}/movies/${payload.id}.json`
+    const database = getDatabase(payload.app);
+    await remove(
+      ref(database, "users/" + user.id + "/movies/" + payload.movie.id)
     );
-    if (response.status === 200) {
-      const itemIndex = user.movies.findIndex((x) => x.id === payload.id);
-      user.movies.splice(itemIndex, 1);
-    }
+    const itemIndex = user.movies.findIndex((x) => x.id === payload.movie.id);
+    user.movies.splice(itemIndex, 1);
+    localStorage.setItem("user", JSON.stringify(user));
+  },
+  async addRate(state, payload) {
+    const user = state.localUser.user;
+    const database = getDatabase(payload.app);
+    await set(
+      ref(
+        database,
+        "users/" + user.id + "/movies/" + payload.movie.id + "/myRate"
+      ),
+      payload.rate
+    );
+    const userMovie = user.movies.find((x) => x.id === payload.movie.id);
+    userMovie.myRate = payload.rate;
     localStorage.setItem("user", JSON.stringify(user));
   },
 };

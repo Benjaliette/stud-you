@@ -1,8 +1,11 @@
 <template>
   <section v-if="isAuth">
     <h2>Movies to watch</h2>
-    <div class="cards">
+    <div class="cards" v-if="hasWatchlistMovies">
       <movies-list :movies="watchlistMovies"></movies-list>
+    </div>
+    <div v-else>
+      <p>There is <span class="blue">no movies</span> to watch yet ...</p>
     </div>
   </section>
   <section v-else>
@@ -41,6 +44,14 @@ const watchlistMovies = computed(() => store.getters["users/userWatchlist"]);
 const userTopMovies = computed(() => store.getters["users/userTopMovies"]);
 
 const isAuth = computed(() => store.getters["users/isAuth"]);
+
+const hasWatchlistMovies = computed(() => {
+  if (watchlistMovies.value) {
+    return watchlistMovies.value.length > 0;
+  } else {
+    return false;
+  }
+});
 
 onMounted(() => {
   if (userTopMovies.value === null) {

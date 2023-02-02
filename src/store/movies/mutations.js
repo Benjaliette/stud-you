@@ -21,4 +21,18 @@ export default {
       }
     });
   },
+  async loadSearchMovies(state, payload) {
+    const movies = payload.results.map((movie) => {
+      return {
+        id: movie.id,
+        title: movie.title,
+        year: Number(movie.release_date.split("-")[0]),
+        rating: movie.vote_average,
+        poster: `${basePicUrl}${movie.poster_path}`,
+        type: [payload.type],
+      };
+    });
+
+    state.searchResults = movies;
+  },
 };

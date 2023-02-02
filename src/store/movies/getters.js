@@ -17,4 +17,7 @@ export default {
   lastMovie(_state, getters) {
     return getters.movies[Math.floor(Math.random() * getters.movies.length)];
   },
+  searchResults(state) {
+    return state.searchResults;
+  },
 };

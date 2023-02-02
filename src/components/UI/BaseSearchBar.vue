@@ -17,11 +17,13 @@
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
+import { ref, computed, watch } from "vue";
+import { useRoute } from "vue-router";
 
 const inputValue = ref("");
 defineProps(["defaultText"]);
 
+const route = useRoute();
 const emits = defineEmits(["search", "clear"]);
 
 const glass = computed(() => "fa-solid fa-magnifying-glass");
@@ -35,6 +37,16 @@ const clearInputValue = () => {
   inputValue.value = "";
   emits("clear");
 };
+
+const routeName = computed(() => {
+  return route.name;
+});
+
+watch(routeName, (to, from) => {
+  if (from === "search" && to !== "search") {
+    clearInputValue();
+  }
+});
 </script>
 
 <style scoped>

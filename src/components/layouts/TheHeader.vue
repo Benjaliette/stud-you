@@ -41,7 +41,7 @@
 <script setup>
 import UserDropdown from "../users/UserDropdown.vue";
 
-import { computed, ref } from "vue";
+import { computed, ref, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { useStore } from "vuex";
 
@@ -76,7 +76,11 @@ const getMovies = (query) => {
   if (route.name !== "search") {
     oldRoute.value = route.name;
   }
-  router.push({ path: "/search", query: { title: query } });
+  if (query === "") {
+    goBack();
+  } else {
+    router.push({ path: "/search", query: { title: query } });
+  }
 };
 
 const goBack = () => {

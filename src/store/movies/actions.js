@@ -40,4 +40,9 @@ export default {
     const itemIndex = context.state.movies.findIndex((x) => x.id === data.id);
     context.state.movies[itemIndex].actors = actors;
   },
+  async searchMovie(context, data) {
+    const url = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.VUE_APP_TMDB_KEY}&query=${data}&include_adult=false`;
+    const response = await axios.get(url);
+    context.commit("loadSearchMovies", response.data);
+  },
 };

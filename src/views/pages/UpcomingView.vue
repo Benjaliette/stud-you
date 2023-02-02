@@ -5,9 +5,9 @@
       <div v-for="movie in upcomingMovies" :key="movie.id" class="card__item">
         <base-movie-card :movie="movie"></base-movie-card>
         <base-flag
-          :marked="movie.saved"
-          @click="markAsSaved(movie)"
-          v-if="isAuth"
+          @watchlist="markAsSaved(movie)"
+          :isMarked="movieInWatchlist(movie)"
+          v-if="!isWatchlist && isAuth"
         ></base-flag>
       </div>
     </div>
@@ -17,13 +17,33 @@
 <script setup>
 import { computed } from "vue";
 import { useStore } from "vuex";
+import { useRoute } from "vue-router";
 
 const store = useStore();
+const route = useRoute();
 
 const upcomingMovies = computed(() => store.getters["movies/upcomingMovies"]);
 
 const markAsSaved = (markedMovie) => {
-  store.dispatch("movies/markMovieAsSaved", markedMovie);
+  store.dispatch("users/saveMovie", markedMovie);
+};
+
+const isWatchlist = computed(() => {
+  return route.name === "watchlist";
+});
+
+const movieInWatchlist = (movie) => {
+  const watchlist = store.getters["users/userWatchlist"];
+  if (watchlist) {
+    const markedMovie = watchlist.find((watchMov) => watchMov.id === movie.id);
+    if (markedMovie) {
+      return true;
+    } else {
+      return false;
+    }
+  } else {
+    return false;
+  }
 };
 
 const isAuth = computed(() => {

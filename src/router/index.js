@@ -40,6 +40,19 @@ const routes = [
     component: () => import("../views/movies/SearchMovies.vue"),
   },
   {
+    path: "/logout",
+    name: "logout",
+    beforeEnter(_to, from, next) {
+      store.dispatch("users/logout");
+      console.log(from.meta.requiresAuth);
+      if (from.meta.requiresAuth) {
+        next({ name: "browse" });
+      } else {
+        location.reload();
+      }
+    },
+  },
+  {
     path: "/users/:id",
     name: "user",
     component: () => import("../views/users/UserProfileView.vue"),
@@ -51,6 +64,9 @@ const routes = [
     path: "/users/:id/edit",
     name: "editUser",
     component: () => import("../views/users/UserEditView.vue"),
+    meta: {
+      requiresAuth: true,
+    },
   },
 ];
 
@@ -59,7 +75,7 @@ const router = createRouter({
   routes,
 });
 
-router.beforeEach((to, from, next) => {
+router.beforeEach((to, _from, next) => {
   if (to.meta.requiresAuth && !store.getters["users/isAuth"]) {
     next("/login");
   } else {

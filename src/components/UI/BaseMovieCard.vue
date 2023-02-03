@@ -1,6 +1,6 @@
 <template>
   <div class="card">
-    <div :style="moviePoster" class="card__img" @click="showMovie">
+    <div v-lazy:background-image="imgUrl" class="card__img" @click="showMovie">
       <article class="card__article">
         <header class="card__article__header">
           <h4>{{ movie.title }}</h4>
@@ -48,10 +48,8 @@ const props = defineProps({
   },
 });
 
-const moviePoster = computed(() => {
-  return {
-    backgroundImage: `linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 80%), url(${props.movie.poster})`,
-  };
+const imgUrl = computed(() => {
+  return props.movie.poster;
 });
 
 const markAsRead = () => {

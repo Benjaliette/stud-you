@@ -13,12 +13,12 @@
     <section class="user__section">
       <div class="user__form-input" :class="{ error: errors.firstName }">
         <h2>First name:</h2>
-        <input type="text" v-model="user.firstName" />
+        <input type="text" v-model="user.firstName" @blur="checkFirstName" />
         <p v-if="errors.firstName">You must have a first name</p>
       </div>
       <div class="user__form-input" :class="{ error: errors.lastName }">
         <h2>Last name:</h2>
-        <input type="text" v-model="user.lastName" />
+        <input type="text" v-model="user.lastName" @blur="checkLastName" />
         <p v-if="errors.lastName">You must have a last name</p>
       </div>
     </section>
@@ -30,7 +30,7 @@
       </div>
       <div class="user__form-input" :class="{ error: errors.email }">
         <h2>Email:</h2>
-        <input type="email" v-model="user.email" />
+        <input type="email" v-model="user.email" @blur="checkEmail" />
         <p v-if="errors.email">Please enter a valid mail</p>
       </div>
     </section>
@@ -47,10 +47,12 @@
       </div>
     </section>
     <div class="user__form-action">
+      <loading-spinner v-if="isLoading"></loading-spinner>
       <base-button
         :type="{ color: 'blue', size: '' }"
         :link="false"
         @click="submitForm"
+        v-else
       >
         Edit
       </base-button>
@@ -60,9 +62,11 @@
 
 <script setup>
 import { useStore } from "vuex";
-import { computed, reactive } from "vue";
+import { useRouter } from "vue-router";
+import { computed, reactive, ref } from "vue";
 
 const store = useStore();
+const router = useRouter();
 const errors = reactive({
   firstName: false,
   lastName: false,
@@ -70,27 +74,66 @@ const errors = reactive({
   email: false,
   description: false,
 });
+const isValid = ref(true);
+const isLoading = ref(false);
 
 const user = computed(() => {
   return store.getters["users/userLoggedIn"];
 });
 
-const submitForm = (event) => {
-  event.preventDefault();
+const checkFirstName = () => {
   if (user.value.firstName === "") {
     errors.firstName = true;
+    isValid.value = false;
   }
+};
+
+const checkLastName = () => {
   if (user.value.lastName === "") {
     errors.lastName = true;
+    isValid.value = false;
   }
-  if (user.value.username === "") {
-    errors.username = true;
-  }
+};
+
+const checkEmail = () => {
   if (user.value.email === "") {
     errors.email = true;
+    isValid.value = false;
   }
-  if (user.value.description === "") {
-    errors.description = true;
+};
+
+const checkErrors = () => {
+  checkFirstName();
+  checkLastName();
+  checkEmail();
+  console.log(isValid.value);
+};
+
+const redirect = () => {
+  if (isValid.value) {
+    router.replace(`/users/${user.value.id}`);
+  }
+};
+
+const submitForm = async (event) => {
+  event.preventDefault();
+  isLoading.value = true;
+  isValid.value = true;
+  checkErrors();
+  if (!isValid.value) {
+    return;
+  } else {
+    const editedUser = {
+      id: user.value.id,
+      firstName: user.value.firstName,
+      lastName: user.value.lastName,
+      username: user.value.username,
+      email: user.value.email,
+      description: user.value.description,
+    };
+    await store.dispatch("users/updateProfile", editedUser);
+    isLoading.value = false;
+    await redirect();
   }
 };
 </script>

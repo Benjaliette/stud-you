@@ -4,6 +4,7 @@ import {
   signInWithEmailAndPassword,
   GoogleAuthProvider,
   signInWithPopup,
+  updateEmail,
 } from "firebase/auth";
 import { initializeApp } from "firebase/app";
 import axios from "axios";
@@ -110,6 +111,13 @@ export default {
       const credential = GoogleAuthProvider.credentialFromError(error);
       throw errorCode;
     }
+  },
+  async updateProfile(context, data) {
+    const app = await initializeApp(context.rootGetters.firebaseConfig);
+    const auth = await getAuth(app);
+    console.log(auth);
+    await updateEmail(auth.currentUser, data.email);
+    context.commit("updateUser", { app: app, user: data });
   },
   logout(context) {
     context.commit("logout");

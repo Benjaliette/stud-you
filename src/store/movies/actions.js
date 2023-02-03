@@ -23,6 +23,7 @@ export default {
     );
     const overview = movieDetails.data.overview;
     const itemIndex = context.state.movies.findIndex((x) => x.id === data.id);
+    console.log(context.state.movies[itemIndex]);
     context.state.movies[itemIndex].description = overview;
   },
 

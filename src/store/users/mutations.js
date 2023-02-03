@@ -1,5 +1,5 @@
 import axios from "axios";
-import { getDatabase, set, ref, remove } from "firebase/database";
+import { getDatabase, set, ref, remove, update } from "firebase/database";
 
 export default {
   markMovie(state, payload) {
@@ -16,9 +16,13 @@ export default {
     state.localUser.user = null;
   },
   logout(state) {
-    state.localUser.status.loggedIn = false;
-    state.localUser.user = null;
-    localStorage.removeItem("user");
+    try {
+      state.localUser.status.loggedIn = false;
+      state.localUser.user = null;
+      localStorage.removeItem("user");
+    } catch (error) {
+      console.log("ok");
+    }
   },
   async addUser(state, payload) {
     const database = getDatabase(payload.app);
@@ -33,7 +37,7 @@ export default {
       ref(database, "users/" + user.id + "/movies/" + payload.movie.id),
       payload.movie
     );
-    if (user.movies) {
+    if (user.movies.length > 0) {
       user.movies.push(payload.movie);
     } else {
       user.movies = [payload.movie];
@@ -60,8 +64,24 @@ export default {
       ),
       payload.rate
     );
-    const userMovie = user.movies.find((x) => x.id === payload.movie.id);
+    const userMovie = Object.values(user.movies).find(
+      (x) => x.id === payload.movie.id
+    );
     userMovie.myRate = payload.rate;
+    localStorage.setItem("user", JSON.stringify(user));
+  },
+  async updateUser(state, payload) {
+    const database = getDatabase(payload.app);
+    const user = payload.user;
+    update(ref(database, "users/" + user.id), {
+      id: user.id,
+      email: user.email,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      username: user.username,
+      description: user.description,
+    });
+    state.localUser.user = payload.user;
     localStorage.setItem("user", JSON.stringify(user));
   },
 };

@@ -56,16 +56,16 @@ const closeDialog = () => {
   emits("close");
 };
 
-const submitRating = () => {
+const submitRating = async () => {
   const rate = {
     review: review.value,
     rating: rating.value,
   };
-  store.dispatch("users/rateMovie", {
+  await store.dispatch("users/rateMovie", {
     rate: rate,
     movie: props.movie,
   });
-  closeDialog();
+  await closeDialog();
 };
 
 const displayValue = () => {

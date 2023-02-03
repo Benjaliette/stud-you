@@ -49,6 +49,7 @@ const close = () => {
 
 onUpdated(() => {
   if (props.show === true) {
+    console.log(props.movie);
     store.dispatch("movies/getActors", props.movie);
     store.dispatch("movies/getMoviesOverview", props.movie);
   }

@@ -3,14 +3,8 @@
     <h2>{{ userFullName }}</h2>
     <ul class="dropdown__list">
       <nav-link :to="userLink" icon="user" dropdown>Profile</nav-link>
-      <nav-link to="browse" icon="gear" dropdown>Settings</nav-link>
       <nav-link to="watchlist" icon="heart" dropdown>Watchlist</nav-link>
-      <nav-link
-        to="browse"
-        icon="arrow-right-from-bracket"
-        dropdown
-        @click="logout"
-      >
+      <nav-link icon="arrow-right-from-bracket" dropdown to="logout">
         <span>Log out</span>
       </nav-link>
     </ul>
@@ -21,12 +15,14 @@
 import { computed, ref } from "vue";
 import { onClickOutside } from "@vueuse/core";
 import { useStore } from "vuex";
+import { useRouter } from "vue-router";
 import NavLink from "../layouts/NavLink.vue";
 
 const props = defineProps(["user"]);
 const emits = defineEmits(["close"]);
 const target = ref(null);
 const store = useStore();
+const router = useRouter();
 
 const userFullName = computed(() => {
   if (props.user.firstName === "" && props.user.lastName === "") {
@@ -51,10 +47,6 @@ onClickOutside(target, (event) => {
     emits("close");
   }
 });
-
-const logout = () => {
-  store.dispatch("users/logout");
-};
 </script>
 
 <style scoped>

@@ -1,12 +1,12 @@
 <template>
   <li>
     <div class="list-item__index"><slot></slot></div>
-    <base-movie-card :movie="movie" :top="true"></base-movie-card>
+    <base-movie-card :movie="props.movie" :top="true"></base-movie-card>
   </li>
 </template>
 
 <script setup>
-defineProps(["movie"]);
+const props = defineProps(["movie"]);
 </script>
 
 <style scoped>

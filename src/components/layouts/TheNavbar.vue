@@ -39,13 +39,7 @@
         <nav-link icon="user" :to="userLink" :active="isActive('user')">
           Profile
         </nav-link>
-        <nav-link icon="gear" to="browse" :active="false">Setting</nav-link>
-        <nav-link
-          icon="arrow-right-from-bracket"
-          :active="false"
-          to="browse"
-          @click="logout"
-        >
+        <nav-link icon="arrow-right-from-bracket" :active="false" to="logout">
           Log out
         </nav-link>
       </ul>
@@ -66,10 +60,11 @@
 import NavLink from "./NavLink.vue";
 import { ref, computed } from "vue";
 import { useStore } from "vuex";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 
 const store = useStore();
 const route = useRoute();
+const router = useRouter();
 const activeLink = ref("");
 
 const isActive = (linkName) => {
@@ -88,10 +83,6 @@ const userLink = computed(() => {
   const user = store.getters["users/userLoggedIn"];
   return `users/${user.id}`;
 });
-
-const logout = () => {
-  store.dispatch("users/logout");
-};
 </script>
 
 <style scoped>

@@ -69,7 +69,7 @@ const submitRating = async () => {
     movie: props.movie,
   });
   await closeDialog();
-  router.replace("/watchlist");
+  await router.replace("/watchlist");
 };
 
 const displayValue = () => {

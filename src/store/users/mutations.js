@@ -37,7 +37,7 @@ export default {
       ref(database, "users/" + user.id + "/movies/" + payload.movie.id),
       payload.movie
     );
-    if (user.movies.length > 0) {
+    if (user.movies) {
       user.movies.push(payload.movie);
     } else {
       user.movies = [payload.movie];

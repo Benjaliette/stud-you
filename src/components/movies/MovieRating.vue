@@ -44,6 +44,9 @@
 <script setup>
 import { ref } from "vue";
 import { useStore } from "vuex";
+import { useRouter } from "vue-router";
+
+const router = useRouter();
 
 const emits = defineEmits(["close"]);
 const props = defineProps(["movie", "show"]);
@@ -66,6 +69,7 @@ const submitRating = async () => {
     movie: props.movie,
   });
   await closeDialog();
+  router.replace("/watchlist");
 };
 
 const displayValue = () => {
